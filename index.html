@@ -3,494 +3,226 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>НСК Олимп — Стратегия за развитие</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>НСК Олимп — Стратегия за развитие 2026–2030</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
-  :root {
-    --navy: #0d1b2a;
-    --navy-mid: #1a2f45;
-    --navy-light: #243d57;
-    --gold: #c8922a;
-    --gold-light: #e8b84b;
-    --gold-pale: #f5e6c4;
-    --water: #1e6fa0;
-    --water-light: #3a8fbf;
-    --cream: #faf8f3;
-    --cream-dark: #f0ebe0;
-    --text-main: #1a1a2e;
-    --text-body: #2d3a4a;
-    --text-muted: #5a6a7a;
-    --text-light: #8a9aaa;
-    --white: #ffffff;
-    --border: rgba(13,27,42,0.12);
-    --shadow-sm: 0 2px 8px rgba(13,27,42,0.06);
-    --shadow-md: 0 4px 20px rgba(13,27,42,0.10);
-    --shadow-lg: 0 8px 40px rgba(13,27,42,0.14);
-  }
+:root {
+  --navy:#0d1b2a; --navy-mid:#1a2f45; --navy-light:#243d57;
+  --gold:#c8922a; --gold-light:#e8b84b; --gold-pale:#fdf3dc;
+  --water:#1e6fa0; --water-light:#3a8fbf; --water-pale:#e3f2fc;
+  --cream:#faf8f3; --cream-dark:#f0ebe0;
+  --text:#2d3a4a; --text-muted:#5a6a7a;
+  --border:rgba(13,27,42,0.12);
+  --green:#2e7d32; --green-pale:#e8f5e9;
+  --red:#c62828; --red-pale:#ffebee;
+  --amber:#e65100; --amber-pale:#fff8e1;
+  --blue:#1565c0; --blue-pale:#e3f2fd;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--cream);color:var(--text);font-size:16px;line-height:1.75;}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* COVER */
+.cover{background:var(--navy);color:#fff;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(200,146,42,.18) 0%,transparent 70%),radial-gradient(ellipse 60% 80% at 20% 100%,rgba(30,111,160,.25) 0%,transparent 60%);}
+.cover-wave{position:absolute;bottom:0;left:0;right:0;height:100px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100'%3E%3Cpath fill='%23faf8f3' d='M0,50 C360,100 1080,0 1440,60 L1440,100 L0,100Z'/%3E%3C/svg%3E") no-repeat bottom;background-size:cover;}
+.cover-label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-light);font-weight:600;margin-bottom:1.5rem;position:relative;}
+.cover h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.1;color:#fff;position:relative;margin-bottom:.75rem;}
+.cover h1 span{color:var(--gold-light);}
+.cover-motto{font-size:1.1rem;color:rgba(255,255,255,.75);max-width:560px;position:relative;margin:.75rem auto 2rem;font-style:italic;border-left:3px solid var(--gold);padding-left:1rem;text-align:left;}
+.cover-sub{font-size:1rem;color:rgba(255,255,255,.55);max-width:500px;position:relative;margin-bottom:2rem;}
+.cover-stats{display:flex;gap:2rem;position:relative;flex-wrap:wrap;justify-content:center;}
+.cover-stat{text-align:center;}
+.cover-stat-num{font-size:2rem;font-weight:800;color:var(--gold-light);}
+.cover-stat-label{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px;}
 
-  html { scroll-behavior: smooth; }
+/* NAV */
+.toc{background:var(--navy-mid);padding:.75rem 2rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.3);}
+.toc-inner{max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;}
+.toc-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);font-weight:700;margin-right:8px;white-space:nowrap;}
+.toc a{color:rgba(255,255,255,.6);text-decoration:none;font-size:12px;padding:3px 9px;border-radius:20px;transition:all .2s;white-space:nowrap;}
+.toc a:hover{color:#fff;background:rgba(255,255,255,.1);}
 
-  body {
-    font-family: 'Source Sans 3', sans-serif;
-    background: var(--cream);
-    color: var(--text-body);
-    font-size: 16px;
-    line-height: 1.75;
-  }
+/* LAYOUT */
+.page{max-width:900px;margin:0 auto;padding:0 2rem;}
 
-  /* ── COVER ── */
-  .cover {
-    background: var(--navy);
-    color: var(--white);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 4rem 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .cover::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,146,42,0.18) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 80% at 20% 100%, rgba(30,111,160,0.25) 0%, transparent 60%);
-  }
-  .cover-wave {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 120px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%23faf8f3' d='M0,60 C360,120 1080,0 1440,80 L1440,120 L0,120Z'/%3E%3C/svg%3E") no-repeat bottom;
-    background-size: cover;
-  }
-  .cover-label {
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    position: relative;
-  }
-  .cover h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    color: var(--white);
-    position: relative;
-    margin-bottom: 1rem;
-  }
-  .cover h1 span { color: var(--gold-light); }
-  .cover-sub {
-    font-size: 1.2rem;
-    color: rgba(255,255,255,0.65);
-    max-width: 520px;
-    position: relative;
-    margin-bottom: 3rem;
-  }
-  .cover-line {
-    width: 60px; height: 2px;
-    background: linear-gradient(90deg, var(--gold), transparent);
-    position: relative;
-    margin: 0 auto;
-  }
+/* CHAPTER */
+.chapter{padding:4rem 0 1rem;}
+.chapter-num{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.5rem;display:flex;align-items:center;gap:10px;}
+.chapter-num::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gold-pale),transparent);}
+.chapter h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--navy);line-height:1.2;}
+.section{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--border);}
+.section:last-child{border-bottom:none;}
+.section h3{font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:1rem;padding-left:14px;border-left:3px solid var(--gold);}
+.section h4{font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--water);margin:1.2rem 0 .4rem;}
+p{margin-bottom:.8rem;color:var(--text);}
+p:last-child{margin-bottom:0;}
 
-  /* ── NAV ── */
-  .toc {
-    background: var(--navy-mid);
-    padding: 3rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-  }
-  .toc-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-    align-items: center;
-  }
-  .toc-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    font-weight: 600;
-    margin-right: 8px;
-    white-space: nowrap;
-  }
-  .toc a {
-    color: rgba(255,255,255,0.6);
-    text-decoration: none;
-    font-size: 13px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .toc a:hover {
-    color: var(--white);
-    background: rgba(255,255,255,0.1);
-  }
+/* BULLETS */
+.blist{list-style:none;margin:.6rem 0;}
+.blist li{padding:4px 0 4px 20px;position:relative;color:var(--text);line-height:1.6;font-size:15px;}
+.blist li::before{content:'';position:absolute;left:0;top:13px;width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:.75;}
 
-  /* ── LAYOUT ── */
-  .page {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
+/* CALLOUTS */
+.callout{background:var(--navy);color:#fff;border-radius:10px;padding:1.25rem 1.5rem;margin:1.2rem 0;border-top:3px solid var(--gold);}
+.callout p{color:rgba(255,255,255,.85);margin:0 0 .5rem;}
+.callout p:last-child{margin:0;}
+.callout strong{color:var(--gold-light);}
+.callout-light{background:var(--cream-dark);border-left:4px solid var(--water);border-radius:0 8px 8px 0;padding:.9rem 1.25rem;margin:1rem 0;}
+.callout-light p{color:var(--text);margin:0;font-style:italic;}
+.callout-gold{background:linear-gradient(135deg,#fdf6e7,var(--gold-pale));border:1px solid rgba(200,146,42,.35);border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;}
+.callout-gold p{color:#3d2800;margin:0 0 .4rem;}
+.callout-gold p:last-child{margin:0;}
 
-  /* ── CHAPTER ── */
-  .chapter {
-    padding: 5rem 0 2rem;
-  }
-  .chapter-header {
-    margin-bottom: 3rem;
-  }
-  .chapter-num {
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .chapter-num::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--gold-pale), transparent);
-  }
-  .chapter h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-    font-weight: 700;
-    color: var(--navy);
-    line-height: 1.2;
-  }
+/* TABLES */
+.styled-table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:14px;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(13,27,42,.07);}
+.styled-table th{background:var(--navy);color:#fff;padding:9px 13px;text-align:left;font-weight:600;font-size:13px;}
+.styled-table td{padding:8px 13px;border-bottom:1px solid var(--border);color:var(--text);}
+.styled-table tr:last-child td{border-bottom:none;}
+.styled-table tr:nth-child(even) td{background:var(--cream-dark);}
 
-  /* ── SECTION ── */
-  .section {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .section:last-child { border-bottom: none; }
+/* SWOT */
+.swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:1rem 0;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(13,27,42,.1);}
+.swot-header{padding:.7rem 1rem;font-weight:700;font-size:13px;color:#fff;letter-spacing:.05em;}
+.swot-cell{padding:1rem 1.1rem;font-size:13px;}
+.swot-cell ul{list-style:none;margin:0;}
+.swot-cell ul li{padding:3px 0 3px 16px;position:relative;line-height:1.5;}
+.swot-cell ul li::before{content:'•';position:absolute;left:0;font-weight:700;}
+.sh-s{background:var(--green);}
+.sh-w{background:var(--red);}
+.sh-o{background:var(--blue);}
+.sh-t{background:var(--amber);}
+.sc-s{background:var(--green-pale);}
+.sc-s li{color:var(--green);}
+.sc-s li::before{color:var(--green);}
+.sc-w{background:var(--red-pale);}
+.sc-w li{color:var(--red);}
+.sc-w li::before{color:var(--red);}
+.sc-o{background:var(--blue-pale);}
+.sc-o li{color:var(--blue);}
+.sc-o li::before{color:var(--blue);}
+.sc-t{background:var(--amber-pale);}
+.sc-t li{color:var(--amber);}
+.sc-t li::before{color:var(--amber);}
 
-  .section h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 1rem;
-    padding-left: 16px;
-    border-left: 3px solid var(--gold);
-  }
+/* KPI BARS */
+.kpi-item{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.kpi-label{font-size:13px;width:220px;flex-shrink:0;color:var(--text);}
+.kpi-track{flex:1;height:8px;background:var(--cream-dark);border-radius:4px;overflow:hidden;}
+.kpi-fill{height:100%;border-radius:4px;}
+.kpi-fill-navy{background:linear-gradient(90deg,var(--navy),var(--water-light));}
+.kpi-fill-water{background:linear-gradient(90deg,var(--water),#6ab5d8);}
+.kpi-val{font-size:13px;font-weight:700;color:var(--navy);width:36px;text-align:right;flex-shrink:0;}
 
-  .section h4 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--water);
-    margin: 1.5rem 0 0.5rem;
-  }
+/* TIMELINE */
+.timeline{margin:1rem 0;}
+.tl-item{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px;}
+.tl-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;width:90px;flex-shrink:0;padding-top:2px;}
+.tl-text{font-size:14px;color:var(--text);}
 
-  p { margin-bottom: 0.9rem; color: var(--text-body); }
-  p:last-child { margin-bottom: 0; }
+/* CARDS GRID */
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:1rem 0;}
+.card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;box-shadow:0 2px 6px rgba(13,27,42,.05);}
+.card-title{font-weight:700;color:var(--navy);font-size:14px;margin-bottom:6px;display:flex;align-items:center;gap:7px;}
+.card-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;}
 
-  /* ── BULLET LISTS ── */
-  .bullet-list {
-    list-style: none;
-    margin: 0.75rem 0;
-  }
-  .bullet-list li {
-    padding: 5px 0 5px 22px;
-    position: relative;
-    color: var(--text-body);
-    line-height: 1.6;
-  }
-  .bullet-list li::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 14px;
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--gold);
-    opacity: 0.7;
-  }
+/* STEPS */
+.step{display:flex;gap:14px;padding:12px 0;border-bottom:1px dashed var(--border);}
+.step:last-child{border-bottom:none;}
+.step-num{width:34px;height:34px;background:var(--navy);color:var(--gold-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px;}
+.step-title{font-weight:700;color:var(--navy);font-size:14px;margin-bottom:3px;}
+.step-desc{font-size:13px;color:var(--text-muted);line-height:1.5;}
 
-  /* ── CALLOUT ── */
-  .callout {
-    background: var(--navy);
-    color: var(--white);
-    border-radius: 12px;
-    padding: 1.5rem 1.75rem;
-    margin: 1.5rem 0;
-    position: relative;
-    overflow: hidden;
-  }
-  .callout::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--gold-light));
-  }
-  .callout p { color: rgba(255,255,255,0.85); margin: 0; font-size: 1.05rem; }
-  .callout strong { color: var(--gold-light); }
+/* PYRAMID */
+.pyramid{max-width:700px;margin:1.5rem auto;}
+.pyr-level{padding:12px 20px;color:#fff;text-align:center;margin-bottom:1px;cursor:default;transition:transform .15s;}
+.pyr-level:hover{transform:scaleX(1.01);}
+.pyr-name{font-weight:700;font-size:14px;}
+.pyr-num{font-size:12px;opacity:.8;margin-top:2px;}
+.pyr-arrow{text-align:center;color:var(--gold);font-size:18px;margin:2px 0;}
 
-  .callout-light {
-    background: var(--cream-dark);
-    border-left: 4px solid var(--water);
-    border-radius: 0 10px 10px 0;
-    padding: 1rem 1.5rem;
-    margin: 1.2rem 0;
-  }
-  .callout-light p { color: var(--text-body); margin: 0; }
+/* CHAPTER DIVIDER */
+.chapter-divider{height:3px;background:linear-gradient(90deg,var(--gold),var(--water),transparent);opacity:.35;margin:0;}
 
-  .callout-gold {
-    background: linear-gradient(135deg, #fdf6e7, #f5e6c4);
-    border: 1px solid rgba(200,146,42,0.3);
-    border-radius: 10px;
-    padding: 1.25rem 1.5rem;
-    margin: 1.2rem 0;
-  }
-  .callout-gold p { color: var(--text-body); margin: 0; }
+/* VISION BOX */
+.vision-box{background:var(--navy);color:#fff;border-radius:14px;padding:1.75rem 2rem;margin:1.2rem 0;position:relative;overflow:hidden;border-left:4px solid var(--gold);}
+.vision-box::after{content:'';position:absolute;right:-20px;bottom:-20px;width:140px;height:140px;border-radius:50%;background:rgba(200,146,42,.08);}
+.vision-box h4{color:var(--gold-light);font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.6rem;}
+.vision-box p{color:rgba(255,255,255,.82);margin:0;position:relative;}
 
-  /* ── PYRAMID ── */
-  .pyramid {
-    margin: 2rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-  .pyr-row {
-    display: flex;
-    align-items: stretch;
-    width: 100%;
-    max-width: 680px;
-    gap: 0;
-  }
-  .pyr-level {
-    flex: 1;
-    padding: 14px 18px;
-    color: var(--white);
-    position: relative;
-    transition: transform 0.15s;
-  }
-  .pyr-level:hover { transform: scale(1.01); z-index: 2; }
-  .pyr-name { font-weight: 600; font-size: 15px; }
-  .pyr-num { font-size: 12px; opacity: 0.8; margin-top: 2px; }
-  .pyr-arrow { text-align: center; font-size: 20px; color: var(--gold); margin: 0; line-height: 1; padding: 6px 0; }
+/* CHART CONTAINERS */
+.chart-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem;margin:1.2rem 0;box-shadow:0 2px 10px rgba(13,27,42,.06);}
+.chart-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:1rem;text-align:center;letter-spacing:.03em;}
+.chart-wrap canvas{max-height:280px;}
 
-  /* ── TABLE ── */
-  .styled-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    font-size: 14px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-  }
-  .styled-table th {
-    background: var(--navy);
-    color: var(--white);
-    padding: 10px 14px;
-    text-align: left;
-    font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.03em;
-  }
-  .styled-table td {
-    padding: 9px 14px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-body);
-  }
-  .styled-table tr:last-child td { border-bottom: none; }
-  .styled-table tr:nth-child(even) td { background: var(--cream-dark); }
+/* MINI TEAM GRID */
+.mini-teams{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1rem 0;}
+.mini-team{background:#fff;border:1px solid var(--border);border-radius:8px;padding:.9rem;text-align:center;}
+.mini-team-icon{font-size:1.6rem;margin-bottom:.4rem;}
+.mini-team-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.3rem;}
+.mini-team-desc{font-size:12px;color:var(--text-muted);line-height:1.4;}
 
-  /* ── KPI BARS ── */
-  .kpi-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 10px;
-  }
-  .kpi-label { font-size: 14px; width: 210px; flex-shrink: 0; color: var(--text-body); }
-  .kpi-track { flex: 1; height: 7px; background: var(--cream-dark); border-radius: 4px; overflow: hidden; }
-  .kpi-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--navy), var(--water-light)); }
-  .kpi-val { font-size: 13px; font-weight: 600; color: var(--navy); width: 36px; text-align: right; flex-shrink: 0; }
+/* TALENT CARD */
+.talent-attrs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:1rem 0;}
+.talent-attr{background:#fff;border:1px solid var(--border);border-radius:8px;padding:.7rem .9rem;display:flex;align-items:flex-start;gap:8px;}
+.talent-attr-icon{font-size:1.2rem;flex-shrink:0;}
+.talent-attr-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;}
+.talent-attr-items{font-size:12px;color:var(--text-muted);line-height:1.5;}
 
-  /* ── STEP BOXES ── */
-  .steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin: 1rem 0;
-  }
-  .step {
-    display: flex;
-    gap: 16px;
-    padding: 14px 0;
-    border-bottom: 1px dashed var(--border);
-  }
-  .step:last-child { border-bottom: none; }
-  .step-num {
-    width: 36px; height: 36px;
-    background: var(--navy);
-    color: var(--gold-light);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .step-body {}
-  .step-title { font-weight: 600; color: var(--navy); font-size: 15px; margin-bottom: 4px; }
-  .step-desc { font-size: 14px; color: var(--text-body); line-height: 1.6; }
+/* VALUES */
+.values-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1rem 0;}
+.value-card{background:#fff;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:.8rem 1rem;font-size:13px;}
+.value-num{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}
+.value-title{font-weight:700;color:var(--navy);margin-bottom:4px;font-size:13px;}
+.value-text{color:var(--text-muted);font-size:12px;line-height:1.5;}
 
-  /* ── GRID CARDS ── */
-  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 1.2rem 0; }
-  .card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.1rem 1.2rem;
-    box-shadow: var(--shadow-sm);
-  }
-  .card-title {
-    font-weight: 600; color: var(--navy);
-    font-size: 14px; margin-bottom: 8px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .card-title-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--gold); flex-shrink: 0;
-  }
-  .card p, .card li { font-size: 14px; }
+/* PROGRESS ZONE */
+.zones{display:flex;gap:8px;margin:1rem 0;flex-wrap:wrap;}
+.zone{flex:1;min-width:160px;border-radius:8px;padding:.9rem 1rem;text-align:center;}
+.zone-label{font-size:13px;font-weight:700;margin-bottom:4px;}
+.zone-pts{font-size:1.4rem;font-weight:800;margin-bottom:2px;}
+.zone-desc{font-size:12px;opacity:.8;}
+.zone-green{background:var(--green-pale);color:var(--green);}
+.zone-amber{background:var(--amber-pale);color:var(--amber);}
+.zone-red{background:var(--red-pale);color:var(--red);}
 
-  /* ── DIVIDER ── */
-  .chapter-divider {
-    height: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--water), transparent);
-    margin: 0;
-    opacity: 0.4;
-  }
+/* FOOTER */
+.doc-footer{background:var(--navy);color:rgba(255,255,255,.5);text-align:center;padding:2.5rem 2rem;font-size:13px;margin-top:4rem;}
+.doc-footer strong{color:var(--gold-light);}
 
-  /* ── VISION SECTION ── */
-  .vision-box {
-    background: var(--navy);
-    color: var(--white);
-    border-radius: 16px;
-    padding: 2rem 2.5rem;
-    margin: 1.5rem 0;
-    position: relative;
-    overflow: hidden;
-  }
-  .vision-box::after {
-    content: '';
-    position: absolute;
-    right: -30px; bottom: -30px;
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    background: rgba(200,146,42,0.1);
-  }
-  .vision-box h4 { color: var(--gold-light); margin-bottom: 0.75rem; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
-  .vision-box p { color: rgba(255,255,255,0.82); margin: 0; font-size: 1.05rem; line-height: 1.7; position: relative; }
-
-  /* ── TIMELINE ── */
-  .timeline {
-    position: relative;
-    margin: 1.5rem 0;
-    padding-left: 30px;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 8px; top: 0; bottom: 0;
-    width: 2px;
-    background: linear-gradient(180deg, var(--gold), var(--water-light), var(--navy));
-  }
-  .tl-item {
-    position: relative;
-    margin-bottom: 1.5rem;
-    padding-left: 16px;
-  }
-  .tl-item::before {
-    content: '';
-    position: absolute;
-    left: -24px; top: 6px;
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    background: var(--gold);
-    border: 2px solid var(--cream);
-    box-shadow: 0 0 0 2px var(--gold);
-  }
-  .tl-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 3px; }
-  .tl-text { font-size: 14px; color: var(--text-body); line-height: 1.6; }
-
-  /* ── FOOTER ── */
-  .doc-footer {
-    background: var(--navy);
-    color: rgba(255,255,255,0.5);
-    text-align: center;
-    padding: 3rem 2rem;
-    font-size: 13px;
-    margin-top: 4rem;
-  }
-  .doc-footer strong { color: var(--gold-light); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 640px) {
-    .card-grid { grid-template-columns: 1fr; }
-    .toc { display: none; }
-    .cover h1 { font-size: 2.2rem; }
-  }
-
-  /* ── PRINT / SCROLL ANIMATION ── */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  .fade-in.visible {
-    opacity: 1;
-    transform: none;
-  }
+@media(max-width:640px){
+  .card-grid,.swot-grid,.talent-attrs,.values-grid,.mini-teams{grid-template-columns:1fr;}
+  .toc{display:none;}
+  .cover h1{font-size:2rem;}
+  .kpi-label{width:140px;}
+}
 </style>
 </head>
 <body>
 
 <!-- COVER -->
 <div class="cover">
-  <div class="cover-label">Стратегически документ · НСК Олимп</div>
-  <h1>Стратегия за<br><span>развитие</span></h1>
-  <p class="cover-sub">Система за откриване, проследяване и развитие на таланти в българското плуване</p>
-  <div class="cover-line"></div>
+  <div class="cover-label">Стратегически документ · НСК Олимп · 2026–2030</div>
+  <h1>Стратегия за<br><span>Развитие</span></h1>
+  <div class="cover-motto">„Рамката не ни ограничава — тя ни дава ресурса да паднат ограниченията."</div>
+  <p class="cover-sub">Система за откриване, проследяване и развитие на деца с потенциал в НСК Олимп</p>
+  <div class="cover-stats">
+    <div class="cover-stat"><div class="cover-stat-num">1500+</div><div class="cover-stat-label">Активни деца</div></div>
+    <div class="cover-stat"><div class="cover-stat-num">17</div><div class="cover-stat-label">Треньори</div></div>
+    <div class="cover-stat"><div class="cover-stat-num">10</div><div class="cover-stat-label">Басейна в София</div></div>
+    <div class="cover-stat"><div class="cover-stat-num">15+</div><div class="cover-stat-label">Години опит</div></div>
+  </div>
   <div class="cover-wave"></div>
 </div>
 
 <!-- NAV -->
 <nav class="toc">
   <div class="toc-inner">
-    <span class="toc-label">Съдържание</span>
+    <span class="toc-label">Навигация</span>
     <a href="#ch1">1. Анализ</a>
     <a href="#ch2">2. Визия</a>
-    <a href="#ch3">3. Олимп Талант</a>
+    <a href="#ch3">3. Олимп Потенциал</a>
     <a href="#ch4">4. Пирамида</a>
     <a href="#ch5">5. Структура</a>
     <a href="#ch6">6. SWOT</a>
@@ -500,1087 +232,875 @@
   </div>
 </nav>
 
-<!-- ГЛАВА 1 -->
-<div id="ch1" class="chapter page fade-in">
-  <div class="chapter-header">
-    <div class="chapter-num">Глава 1</div>
-    <h2>Анализ на текущото състояние на НСК Олимп</h2>
-  </div>
+<!-- ════ ГЛАВА 1 ════ -->
+<div id="ch1" class="chapter page">
+  <div class="chapter-num">Глава 1</div>
+  <h2>Анализ на текущото състояние</h2>
 
   <div class="section">
     <h3>1.1 Изходна позиция</h3>
-    <p>НСК Олимп е сред най-големите спортни организации в България по отношение на брой трениращи деца.</p>
-    <p>Клубът разполага с:</p>
-    <ul class="bullet-list">
-      <li>над 1500 активни деца</li>
-      <li>15–16 треньори</li>
-      <li>утвърдено име в българското плуване</li>
-      <li>традиции в състезателната дейност</li>
-      <li>силно присъствие в масовото плуване</li>
-    </ul>
-    <p>Този мащаб представлява огромно конкурентно предимство. Много клубове разполагат с по-добри материални условия, но малко клубове разполагат с толкова голяма база от деца.</p>
-    <div class="callout">
-      <p><strong>Основният въпрос:</strong> Как този ресурс да бъде превърнат в по-голям брой състезатели, финалисти и медалисти?</p>
+    <p>НСК Олимп е сред най-големите спортни организации в България по брой трениращи деца. Клубът оперира в 10 басейна в цяла София с над 1500 активни деца и утвърдено присъствие в масовото и състезателното плуване.</p>
+    <div class="callout"><p><strong>Основният въпрос:</strong> Как огромният ресурс от деца и треньори да бъде превърнат в устойчива система, която ежегодно произвежда финалисти и медалисти?</p></div>
+
+    <!-- Chart: Club overview -->
+    <div class="chart-wrap">
+      <div class="chart-title">Структура на клуба — текущо vs цел 2030</div>
+      <canvas id="chartOverview"></canvas>
     </div>
   </div>
 
   <div class="section">
-    <h3>1.2 Силни страни на клуба</h3>
-    <h4>Голяма база деца</h4>
-    <p>Над 1500 деца преминават ежегодно през системата на клуба. Това създава предпоставка за откриване на голям брой потенциални състезатели.</p>
-    <h4>Голям треньорски екип</h4>
-    <p>Клубът разполага с:</p>
-    <ul class="bullet-list">
-      <li>треньори в направление „Спорт за здраве"</li>
-      <li>треньори във високо спортно майсторство</li>
-      <li>специалисти с различен опит и профил</li>
-    </ul>
-    <p>Това позволява изграждане на многостепенна система за развитие.</p>
-    <h4>Разпознаваемост на марката Олимп</h4>
-    <p>Клубът е разпознаваем сред родители и деца. Това улеснява привличането на нови членове.</p>
-  </div>
-
-  <div class="section">
-    <h3>1.3 Основни проблеми</h3>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-title"><span class="card-title-dot"></span>Липса на единна система за откриване</div>
-        <p>В момента процесът зависи основно от конкретния треньор. В резултат някои деца получават шанс, а други остават незабелязани.</p>
-      </div>
-      <div class="card">
-        <div class="card-title"><span class="card-title-dot"></span>Липса на системно проследяване</div>
-        <p>След като бъде открит талант, няма централизирана система за неговото наблюдение.</p>
-      </div>
-      <div class="card">
-        <div class="card-title"><span class="card-title-dot"></span>Дупки в отделни набори</div>
-        <p>Наблюдава се неравномерно развитие на възрастовите групи. В определени набори има достатъчно, в други — дефицити. Това затруднява щафетите и класирането.</p>
-      </div>
-      <div class="card">
-        <div class="card-title"><span class="card-title-dot"></span>Ограничена вътрешна конкуренция</div>
-        <p>В определени възрасти местата за държавно първенство са почти гарантирани. Липсата на конкуренция намалява мотивацията.</p>
-      </div>
+    <h3>1.2 Текущи картотекирани деца — 80 активни по възраст</h3>
+    <div class="chart-wrap">
+      <div class="chart-title">80 картотекирани деца по възрастова група (текущо)</div>
+      <canvas id="chartCurrent"></canvas>
     </div>
-  </div>
-
-  <div class="section">
-    <h3>1.4 Възможности</h3>
-    <p>Ако всеки треньор ежегодно идентифицира между 5 и 10 перспективни деца:</p>
+    <table class="styled-table">
+      <thead><tr><th>Възрастова група</th><th>Години</th><th>Брой деца</th><th>% от общо</th></tr></thead>
+      <tbody>
+        <tr><td>Златна рибка</td><td>7–8 г.</td><td>4</td><td>5%</td></tr>
+        <tr><td>Весел делфин</td><td>9–10 г.</td><td>18</td><td>22.5%</td></tr>
+        <tr><td>Деца</td><td>11–12 г.</td><td>21</td><td>26%</td></tr>
+        <tr><td>Младша</td><td>13–14 г.</td><td>15</td><td>19%</td></tr>
+        <tr><td>Старша</td><td>15–16 г.</td><td>18</td><td>22.5%</td></tr>
+        <tr><td>Мъже / Жени</td><td>17+ г.</td><td>4</td><td>5%</td></tr>
+        <tr><td><strong>Общо</strong></td><td></td><td><strong>80</strong></td><td><strong>100%</strong></td></tr>
+      </tbody>
+    </table>
     <div class="callout-gold">
-      <p>15 треньори × 5 деца = <strong>75 деца</strong><br>15 треньори × 10 деца = <strong>150 деца</strong><br><br>Това означава, че ежегодно клубът може да разполага с между 75 и 150 наблюдавани таланта. Дори само 10–15% от тях да достигнат високо състезателно ниво, това представлява огромен резерв за бъдещето.</p>
+      <p>80 картотекирани деца са изходната точка. Системата Олимп Потенциал цели да превърне 1500-те деца в системно наблюдавани и развивани.</p>
     </div>
   </div>
 
   <div class="section">
-    <h3>1.5 Стратегическа необходимост</h3>
-    <p>За да се използва максимално потенциалът на клуба, е необходимо изграждане на:</p>
-    <ul class="bullet-list">
-      <li>система за откриване на таланти</li>
-      <li>система за проследяване на таланти</li>
-      <li>система за развитие на състезатели</li>
-      <li>система за оценяване на треньори</li>
-      <li>система за движение между нивата</li>
+    <h3>1.3 Силни страни</h3>
+    <ul class="blist">
+      <li><strong>1500+ деца</strong> — най-голямата база за селекция в България</li>
+      <li><strong>17 треньора</strong> — позволяват многостепенна специализация</li>
+      <li><strong>10 басейна в София</strong> — широко географско покритие</li>
+      <li><strong>Утвърдено мне</strong> — Хиляди медали от национални и международни турнири · 6 международни медала · 37 национални рекорда</li>
+      <li><strong>Онлайн присъствие и магазин</strong> — собствена екосистема на pluvane.com</li>
+      <li><strong>All In Attitude философия</strong> — ценностна система с ясна идентичност</li>
     </ul>
-    <div class="callout">
-      <p><strong>Основен извод:</strong> НСК Олимп вече разполага с най-трудния за изграждане ресурс — голям брой деца и голям треньорски екип. Следващата стъпка е организиране на този мащаб в единна система за развитие на състезатели.</p>
+  </div>
+
+  <div class="section">
+    <h3>1.4 Основни проблеми</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-title"><span class="card-dot"></span>Липса на централизирана селекция</div><p style="font-size:14px;">Процесът зависи от конкретния треньор — едни деца получават шанс, други остават незабелязани.</p></div>
+      <div class="card"><div class="card-title"><span class="card-dot"></span>Липса на проследяване</div><p style="font-size:14px;">След като се открие дете с потенциал, няма система за наблюдение на развитието му.</p></div>
+      <div class="card"><div class="card-title"><span class="card-dot"></span>Дупки в набори</div><p style="font-size:14px;">Неравномерни набори водят до проблеми при щафети, класиране по точки и дългосрочно развитие.</p></div>
+      <div class="card"><div class="card-title"><span class="card-dot"></span>Ограничена конкуренция</div><p style="font-size:14px;">В определени възрасти местата за ДП са почти гарантирани — намалява мотивацията.</p></div>
     </div>
+  </div>
+
+  <div class="section">
+    <h3>1.5 Потенциал при системен подход</h3>
+    <div class="callout-gold">
+      <p>15 треньори × 5 деца = <strong>75 деца с потенциал</strong> наблюдавани годишно</p>
+      <p>15 треньори × 10 деца = <strong>150 деца с потенциал</strong> наблюдавани годишно</p>
+      <p>Дори само 10–15% да достигнат висококонкурентно ниво — това е огромен резерв.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>1.6 Стратегическа необходимост</h3>
+    <p>За максимално използване на потенциала е необходима система за: <strong>Откриване → Проследяване → Развитие → Оценяване → Движение между нивата.</strong></p>
+    <div class="callout"><p><strong>Основен извод:</strong> НСК Олимп вече разполага с най-трудния за изграждане ресурс. Следващата стъпка е неговото организиране в единна система.</p></div>
   </div>
 </div>
 
 <div class="chapter-divider"></div>
 
-<!-- ГЛАВА 2 -->
-<div id="ch2" class="chapter page fade-in">
-  <div class="chapter-header">
-    <div class="chapter-num">Глава 2</div>
-    <h2>Визия, мисия и философия на НСК Олимп</h2>
-  </div>
+<!-- ════ ГЛАВА 2 ════ -->
+<div id="ch2" class="chapter page">
+  <div class="chapter-num">Глава 2</div>
+  <h2>Мисия, Визия и Ценности</h2>
 
   <div class="section">
-    <h3>2.1 Защо е необходима обща философия?</h3>
-    <p>Всяка голяма и успешна спортна организация се изгражда върху ясна философия. При клуб от мащаба на НСК Олимп философията има още по-голямо значение, защото над 1500 деца и 15–16 треньори ежедневно участват в тренировъчния процес.</p>
-    <div class="callout-light">
-      <p>Без обща философия всеки работи по собствен модел. С обща философия всички работят в една посока. Това не означава всички треньори да тренират по еднакъв начин — означава всички да следват една и съща крайна цел.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>2.2 Мисия на НСК Олимп</h3>
     <div class="vision-box">
       <h4>Мисия</h4>
-      <p>Да предоставя възможност за развитие чрез плуването на всяко дете, независимо от неговото начално ниво, възраст или спортни амбиции.</p>
+      <p>Ние от Сдружение „НСК Олимп" се ангажираме да поставим началото на нещо, което няма да свърши с нашата организация. Ние ще положим основите на едно по-добро, по-здраво, по-устойчиво, по-трудолюбиво и възпитано бъдещо поколение на България, което гледа с любов към спорта. Мисията ни е да придаваме допълнителна стойност, съдействайки на децата, възрастните и организациите да увеличават и развиват способностите си за изява, за да могат да постигнат важните цели, които са си поставили, живеейки един по-добър живот!</p>
     </div>
-    <p>Клубът трябва да бъде място, в което децата изграждат здравословни навици, развиват дисциплина и характер, усвояват спортна култура и получават възможност да достигнат максималния си потенциал.</p>
-    <p>За едно дете този потенциал може да бъде:</p>
-    <ul class="bullet-list">
-      <li>по-добро здраве и увереност</li>
-      <li>участие в състезание</li>
-      <li>покриване на норматив</li>
-      <li>медал от държавно първенство</li>
-      <li>национален отбор</li>
-    </ul>
-    <p>Мисията на клуба е да осигури път до всяко от тези нива.</p>
-  </div>
-
-  <div class="section">
-    <h3>2.3 Визия на НСК Олимп</h3>
-    <div class="vision-box">
+    <div class="vision-box" style="border-color:var(--water-light);">
       <h4>Визия</h4>
-      <p>Да бъде водеща организация в българското плуване, изграждаща устойчив поток от качествени състезатели чрез ефективна система за развитие на таланти.</p>
-    </div>
-    <p>Това означава:</p>
-    <ul class="bullet-list">
-      <li>да няма случайни успехи</li>
-      <li>да няма зависимост от едно силно поколение</li>
-      <li>да няма зависимост от един конкретен треньор</li>
-    </ul>
-    <p>Системата трябва да бъде по-силна от отделната личност. Целта е успехите да бъдат резултат от работещ процес, а не от случайно стечение на обстоятелствата.</p>
-  </div>
-
-  <div class="section">
-    <h3>2.4 Основен принцип на клуба</h3>
-    <div class="callout">
-      <p><strong>„Нито едно талантливо дете не трябва да бъде изгубено."</strong></p>
-    </div>
-    <p>В практиката това означава:</p>
-    <ul class="bullet-list">
-      <li>да не се отказваме от деца, които са започнали по-късно</li>
-      <li>да не подценяваме деца, които тренират по-малко</li>
-      <li>да не разчитаме единствено на ранните резултати</li>
-      <li>да не ограничаваме развитието само до вече изявените състезатели</li>
-    </ul>
-    <p>Историята на спорта многократно е показвала, че ранните шампиони не винаги стават най-добрите спортисти. Затова клубът трябва да изгражда система, която постоянно наблюдава и развива децата.</p>
-  </div>
-
-  <div class="section">
-    <h3>2.5 Ролята на направление „Спорт за здраве"</h3>
-    <p>Една от най-важните промени в мисленето е преодоляването на разделението между спорт за здраве и високо спортно майсторство. Настоящата стратегия приема различен подход:</p>
-    <div class="callout-light">
-      <p>Спортът за здраве е първото стъпало към състезателния спорт. Всеки състезател е започнал именно оттам. Следователно треньорите в това направление изпълняват критична функция: обучение, наблюдение и първична селекция. Те са първите хора, които могат да забележат потенциала на едно дете.</p>
+      <p>Да бъдем признати за водещ плувен клуб в България, изграждащ плувци от световна класа, развивайки в дългосрочна перспектива техния максимален потенциал чрез най-съвременните тенденции и условия, издигайки българския дух и създавайки поводи за национална гордост.</p>
     </div>
   </div>
 
   <div class="section">
-    <h3>2.6 Ролята на състезателното направление</h3>
-    <p>След като талантът бъде открит, неговото развитие преминава към състезателното направление. Там фокусът постепенно се измества към:</p>
-    <ul class="bullet-list">
-      <li>изграждане на тренировъчна култура</li>
-      <li>системност и покриване на нормативи</li>
-      <li>участие в държавни първенства</li>
-      <li>постигане на високи резултати</li>
-    </ul>
-    <p>Това направление не започва от нулата — то стъпва върху работата на всички треньори, участвали преди това в развитието на детето.</p>
+    <h3>2.3 Ценности — 21 принципа</h3>
+    <div class="values-grid">
+      <div class="value-card"><div class="value-num">01</div><div class="value-title">Ръководим се от добродетели</div><div class="value-text">Трудолюбие, работа в екип, коректност, честност, уважение, дисциплина, постоянство, отговорност.</div></div>
+      <div class="value-card"><div class="value-num">02</div><div class="value-title">Придаваме стойност</div><div class="value-text">Надминаваме очакванията на клиентите — винаги даваме повече, отколкото се очаква.</div></div>
+      <div class="value-card"><div class="value-num">03</div><div class="value-title">All In Attitude</div><div class="value-text">Участваме на 100%. Влагаме ентусиазъм и отдаденост. Остаем без енергия в края на деня — защото сме дали всичко.</div></div>
+      <div class="value-card"><div class="value-num">04</div><div class="value-title">Изграждаме най-добрия екип</div><div class="value-text">Развиваме се в 4 области: физическа, умствена, духовна, социално-емоционална.</div></div>
+      <div class="value-card"><div class="value-num">05</div><div class="value-title">Заздравяваме отвътре навън</div><div class="value-text">Преди разширяване — стабилен, обединен и добре чувстващ се екип.</div></div>
+      <div class="value-card"><div class="value-num">06</div><div class="value-title">Усъвършенстваме се непрекъснато</div><div class="value-text">Оптимизираме кадри, методика, реклама, продукт — адаптираме се към всички новости.</div></div>
+      <div class="value-card"><div class="value-num">07</div><div class="value-title">Вземаме правилни решения</div><div class="value-text">Мислим дългосрочно. „Решението ни ще се отрази ли на следващото поколение след нас?"</div></div>
+      <div class="value-card"><div class="value-num">08–21</div><div class="value-title">Още 14 принципа</div><div class="value-text">Правилни клиенти · Високи цели · Учим се и израстваме · Мислим мащабно · Благодарност · Печеля/Печелиш · Правилни партньори · Празнуваме успехите · Изслушваме всеки · Комуникираме · Качество · Говорим разбрано · Произвеждаме резултати · Действаме.</div></div>
+    </div>
   </div>
 
   <div class="section">
-    <h3>2.7 Философия на дългосрочното развитие</h3>
-    <p>Основната грешка в много спортни системи е преследването на бързи резултати. НСК Олимп трябва да следва принципа на дългосрочното развитие.</p>
-    <table class="styled-table">
-      <thead><tr><th>Възраст</th><th>Основни цели</th></tr></thead>
+    <h3>2.4 Философия на дългосрочното развитие</h3>
+    <div class="chart-wrap">
+      <div class="chart-title">Цели по възраст — дългосрочна програма</div>
+      <canvas id="chartAges"></canvas>
+    </div>
+    <table class="styled-table" style="margin-top:.8rem;">
+      <thead><tr><th>Възраст</th><th>Фокус</th></tr></thead>
       <tbody>
-        <tr><td>7–10 години</td><td>Любов към спорта, техника, координация, изграждане на навици</td></tr>
-        <tr><td>11–14 години</td><td>Развитие на състезателни качества, участие в турнири, изграждане на дисциплина</td></tr>
-        <tr><td>15–18 години</td><td>Специализация, високо спортно майсторство, държавни първенства</td></tr>
-        <tr><td>Над 18 години</td><td>Национален и международен спорт</td></tr>
+        <tr><td>7–10 г.</td><td>Любов към спорта, техника, координация, навици</td></tr>
+        <tr><td>11–14 г.</td><td>Труд + потенциал, първи турнири, дисциплина</td></tr>
+        <tr><td>15–18 г.</td><td>Специализация, постоянство, държавни първенства</td></tr>
+        <tr><td>18+ г.</td><td>Национален и международен спорт</td></tr>
       </tbody>
     </table>
-    <p>Този подход гарантира устойчиво развитие и намалява риска от ранно отказване от спорта.</p>
-  </div>
-
-  <div class="section">
-    <h3>2.8 Как изглежда успехът след 5 години?</h3>
-    <p>Успешното изпълнение на стратегията означава:</p>
-    <ul class="bullet-list">
-      <li>всички възрастови групи да бъдат запълнени</li>
-      <li>всяка възраст да има работещ Б Отбор</li>
-      <li>всяка възраст да има силен А Отбор</li>
-      <li>да има постоянна конкуренция за местата на държавните първенства</li>
-      <li>ежегодно да се появяват нови финалисти</li>
-      <li>ежегодно да се появяват нови медалисти</li>
-      <li>да се увеличава броят на състезателите в националните отбори</li>
-    </ul>
   </div>
 </div>
 
 <div class="chapter-divider"></div>
 
-<!-- ГЛАВА 3 -->
-<div id="ch3" class="chapter page fade-in">
-  <div class="chapter-header">
-    <div class="chapter-num">Глава 3</div>
-    <h2>Система „Олимп Талант"</h2>
+<!-- ════ ГЛАВА 3 ════ -->
+<div id="ch3" class="chapter page">
+  <div class="chapter-num">Глава 3</div>
+  <h2>Система „Олимп Потенциал"</h2>
+
+  <div class="section">
+    <h3>3.1 Защо е необходима?</h3>
+    <p>При 1500+ деца е невъзможно индивидуално наблюдение без система. Резултатът без нея: деца с потенциал остават незабелязани, оценяват се само по момента, отпадат преди да разгърнат себе си.</p>
+    <div class="callout"><p><strong>Основен принцип:</strong> „Нито едно дете с потенциал не трябва да бъде изгубено."</p></div>
   </div>
 
   <div class="section">
-    <h3>3.1 Защо е необходима програма „Олимп Талант"?</h3>
-    <p>В момента клубът разполага с огромен човешки ресурс — над 1500 деца и 15–16 треньори. При толкова голям брой деца е практически невъзможно главният треньор или състезателното направление да наблюдават всяко едно дете индивидуално.</p>
-    <p>В резултат на това често се случва:</p>
-    <ul class="bullet-list">
-      <li>талантливи деца да останат незабелязани</li>
-      <li>деца с потенциал да не получат шанс</li>
-      <li>деца да бъдат оценявани единствено по моментните си резултати</li>
-      <li>деца да отпаднат от системата преди да са разгърнали потенциала си</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h3>3.2 Какво представлява „Олимп Талант"?</h3>
+    <h3>3.2 Какво представлява?</h3>
     <div class="card-grid">
-      <div class="card">
-        <div class="card-title"><span class="card-title-dot" style="background:#c0392b;"></span>Олимп Талант НЕ Е</div>
-        <ul class="bullet-list">
-          <li>нов тренировъчен отбор</li>
-          <li>отделна група</li>
-          <li>допълнителна тренировка</li>
-          <li>привилегия за избрани деца</li>
-        </ul>
+      <div class="card" style="border-left:3px solid var(--red);">
+        <div class="card-title"><span class="card-dot" style="background:var(--red);"></span>НЕ е</div>
+        <ul class="blist"><li>Нов отбор или група</li><li>Допълнителна тренировка</li><li>Привилегия за избрани</li></ul>
       </div>
-      <div class="card">
-        <div class="card-title"><span class="card-title-dot" style="background:#27ae60;"></span>Олимп Талант Е</div>
-        <ul class="bullet-list">
-          <li>вътрешна клубна система</li>
-          <li>за откриване на таланти</li>
-          <li>за проследяване на таланти</li>
-          <li>за развитие и създаване на бъдещи състезатели</li>
-        </ul>
-      </div>
-    </div>
-    <div class="callout-light">
-      <p>Това е своеобразна база данни за перспективните деца в клуба.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>3.3 Основна цел</h3>
-    <div class="callout">
-      <p><strong>Да не бъде изгубено нито едно талантливо дете.</strong><br><br>Няма значение кога е започнало, в коя група тренира, кой е неговият треньор или дали тренира 2 или 4 пъти седмично. Важно е само едно: има ли потенциал за развитие?</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>3.4 Talent Identification — Откриване на талант</h3>
-    <p>Треньорът наблюдава децата в своята група и търси не най-добрите резултати, а най-добрите предпоставки.</p>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-title"><span class="card-title-dot"></span>Технически показатели</div>
-        <ul class="bullet-list">
-          <li>усещане за вода</li>
-          <li>добра позиция на тялото</li>
-          <li>лесно усвояване на нови упражнения</li>
-          <li>качествена техника</li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="card-title"><span class="card-title-dot"></span>Физически показатели</div>
-        <ul class="bullet-list">
-          <li>добра координация</li>
-          <li>добра подвижност</li>
-          <li>естествена скорост</li>
-          <li>добра работа с крака</li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="card-title"><span class="card-title-dot"></span>Психологически показатели</div>
-        <ul class="bullet-list">
-          <li>концентрация и дисциплина</li>
-          <li>желание за развитие</li>
-          <li>борбеност</li>
-          <li>състезателен характер</li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="card-title"><span class="card-title-dot"></span>Социални показатели</div>
-        <ul class="bullet-list">
-          <li>подкрепа от семейството</li>
-          <li>редовност</li>
-          <li>желание за участие в състезания</li>
-        </ul>
+      <div class="card" style="border-left:3px solid var(--green);">
+        <div class="card-title"><span class="card-dot" style="background:var(--green);"></span>Е</div>
+        <ul class="blist"><li>База данни за деца с потенциал</li><li>Система за наблюдение 4×/год.</li><li>Инструмент за незагубване на таланти</li></ul>
       </div>
     </div>
   </div>
 
   <div class="section">
-    <h3>3.5 Talent Tracking — Проследяване на талант</h3>
-    <p>След като детето бъде включено в програмата, започва системно наблюдение.</p>
+    <h3>3.3 Идентификация — Труд + Потенциал</h3>
+    <p>Треньорът търси не само природни заложби, а <strong>комбинацията от потенциал и готовност за работа</strong>. Дете с по-малък талант, но огромна упоритост, може да надмине по-надарено, но по-мързеливо дете.</p>
+    <div class="talent-attrs">
+      <div class="talent-attr">
+        <div class="talent-attr-icon">🏊</div>
+        <div><div class="talent-attr-name">Технически</div><div class="talent-attr-items">Усещане за вода · позиция на тялото · лесно учене · качествена техника</div></div>
+      </div>
+      <div class="talent-attr">
+        <div class="talent-attr-icon">💪</div>
+        <div><div class="talent-attr-name">Физически</div><div class="talent-attr-items">Координация · подвижност · естествена скорост · работа с крака</div></div>
+      </div>
+      <div class="talent-attr">
+        <div class="talent-attr-icon">🧠</div>
+        <div><div class="talent-attr-name">Психологически</div><div class="talent-attr-items">Концентрация · дисциплина · борбеност · желание за развитие</div></div>
+      </div>
+      <div class="talent-attr">
+        <div class="talent-attr-icon">🔥</div>
+        <div><div class="talent-attr-name">Труд и упоритост</div><div class="talent-attr-items">Редовност · усилие при трудни задачи · не се предава · търси повече</div></div>
+      </div>
+      <div class="talent-attr">
+        <div class="talent-attr-icon">👨‍👩‍👧</div>
+        <div><div class="talent-attr-name">Социални</div><div class="talent-attr-items">Подкрепа от семейството · редовност · желание за турнири</div></div>
+      </div>
+      <div class="talent-attr">
+        <div class="talent-attr-icon">📈</div>
+        <div><div class="talent-attr-name">Прогрес</div><div class="talent-attr-items">Детето се подобрява ли спрямо себе си? Ключов въпрос!</div></div>
+      </div>
+    </div>
+    <div class="callout-gold">
+      <p><strong>Ключовата промяна в мисленето:</strong> Не само „Колко е талантливо детето?" — а „Колко е готово да работи?"</p>
+      <p>Труд + Потенциал = Идентификация на дете с потенциал</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>3.4 Проследяване — 4 оценки годишно</h3>
     <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-label">Септември</div>
-        <div class="tl-text">Входяща оценка</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-label">Декември</div>
-        <div class="tl-text">Първа междинна оценка</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-label">Март</div>
-        <div class="tl-text">Пролетна оценка</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-label">Юли</div>
-        <div class="tl-text">Годишна оценка</div>
-      </div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Септември</div><div class="tl-text">Входяща оценка — базово ниво при старт на сезона</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Декември</div><div class="tl-text">Първа междинна — проверка на прогреса</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Март</div><div class="tl-text">Пролетна оценка — решения за турнирен план</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Юли</div><div class="tl-text">Годишна оценка — решения за ниво следващия сезон</div></div>
     </div>
-    <p>Така се създава реална история на развитието.</p>
   </div>
 
   <div class="section">
-    <h3>3.6 Формуляр „Олимп Талант"</h3>
+    <h3>3.5 Формуляр „Олимп Потенциал"</h3>
     <table class="styled-table">
-      <thead><tr><th>Показател</th><th>Оценка</th></tr></thead>
+      <thead><tr><th>Показател</th><th>Оценка</th><th>Акцент</th></tr></thead>
       <tbody>
-        <tr><td>Техника</td><td>1–10</td></tr>
-        <tr><td>Координация</td><td>1–10</td></tr>
-        <tr><td>Посещаемост</td><td>1–10</td></tr>
-        <tr><td>Дисциплина</td><td>1–10</td></tr>
-        <tr><td>Мотивация</td><td>1–10</td></tr>
-        <tr><td>Потенциал</td><td>1–10</td></tr>
-        <tr><td><strong>Общ резултат</strong></td><td><strong>/ 60 точки</strong></td></tr>
+        <tr><td>Техника</td><td>1–10</td><td>Качество на движенията</td></tr>
+        <tr><td>Координация</td><td>1–10</td><td>Физическа база</td></tr>
+        <tr><td>Посещаемост</td><td>1–10</td><td>Редовност</td></tr>
+        <tr><td>Дисциплина</td><td>1–10</td><td>Отношение</td></tr>
+        <tr><td>Мотивация и труд</td><td>1–10</td><td>Упоритост, all-in attitude</td></tr>
+        <tr><td>Потенциал</td><td>1–10</td><td>Оценка на треньора</td></tr>
+        <tr><td><strong>Общо</strong></td><td><strong>/ 60 т.</strong></td><td></td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="section">
-    <h3>3.7 Роля на треньорите</h3>
-    <table class="styled-table">
-      <thead><tr><th>Ниво</th><th>Основна задача</th></tr></thead>
-      <tbody>
-        <tr><td>Треньори „Спорт за здраве"</td><td>Откриване на таланти</td></tr>
-        <tr><td>Перспективни групи</td><td>Развитие на таланти</td></tr>
-        <tr><td>Б Отбор</td><td>Подготовка за състезателен спорт</td></tr>
-        <tr><td>А Отбор</td><td>Подготовка за държавни първенства</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="section">
-    <h3>3.8 Очакван резултат</h3>
-    <div class="callout-gold">
-      <p>Ако всеки треньор ежегодно предлага 5 деца: 15 × 5 = <strong>75 деца</strong><br>Ако предлага 10 деца: 15 × 10 = <strong>150 деца</strong><br><br>Ежегодно клубът ще наблюдава между 75 и 150 перспективни деца — огромна база за развитие на бъдещи състезатели.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>3.9 Ползи за клуба</h3>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-title"><span class="card-title-dot"></span>За децата</div>
-        <ul class="bullet-list"><li>получават шанс</li><li>получават цел</li><li>получават перспектива</li></ul>
+    <h3>3.6 Самоуправление — Мини Екипи</h3>
+    <p>За да работи системата без централизиране на всичко в едно лице, клубът въвежда <strong>мини екипи</strong> с ясни таргети и седмично отчитане.</p>
+    <div class="mini-teams">
+      <div class="mini-team">
+        <div class="mini-team-icon">🔍</div>
+        <div class="mini-team-title">Екип „Талант"</div>
+        <div class="mini-team-desc">Координира Олимп Потенциал, обработва формулярите, обновява базата данни</div>
       </div>
-      <div class="card">
-        <div class="card-title"><span class="card-title-dot"></span>За треньорите</div>
-        <ul class="bullet-list"><li>по-ясна структура</li><li>по-лесна селекция</li><li>по-добра обратна връзка</li></ul>
+      <div class="mini-team">
+        <div class="mini-team-icon">🏆</div>
+        <div class="mini-team-title">Екип „Състезания"</div>
+        <div class="mini-team-desc">Организира турнири, следи ранглисти, анализира резултати</div>
+      </div>
+      <div class="mini-team">
+        <div class="mini-team-icon">📊</div>
+        <div class="mini-team-title">Екип „Развитие"</div>
+        <div class="mini-team-desc">KPI мониторинг, движение между нивата, обратна връзка</div>
       </div>
     </div>
-  </div>
-
-  <div class="section">
-    <h3>3.10 Индикатори за успех</h3>
-    <p>След 3 години програмата трябва да доведе до:</p>
-    <ul class="bullet-list">
-      <li>повече деца в Перспективните групи</li>
-      <li>повече деца в Б Отбор и А Отбор</li>
-      <li>повече участници на ДЛОП</li>
-      <li>повече финалисти и медалисти</li>
-    </ul>
-    <div class="callout">
-      <p>Програмата „Олимп Талант" е сърцето на цялата стратегия. Тя свързва Спорт за здраве, Перспективните групи, Б Отбор и А Отбор. Без нея клубът разчита на случайността. С нея клубът изгражда система.</p>
-    </div>
+    <p style="font-size:14px;">Всеки мини екип се среща <strong>веднъж седмично</strong> за 15 минути, преглежда таргетите и докладва на главния треньор. Рамката на таргетите дава свободата да действат самостоятелно — и сигурността, че вървят в правилната посока.</p>
+    <div class="callout-light"><p>Гигантоманията отстъпва на малките производствени звена с ентусиазирани и отдадени хора. — Ценност #3, НСК Олимп</p></div>
   </div>
 </div>
 
 <div class="chapter-divider"></div>
 
-<!-- ГЛАВА 4 -->
-<div id="ch4" class="chapter page fade-in">
-  <div class="chapter-header">
-    <div class="chapter-num">Глава 4</div>
-    <h2>Клубна пирамида и път на състезателя</h2>
+<!-- ════ ГЛАВА 4 ════ -->
+<div id="ch4" class="chapter page">
+  <div class="chapter-num">Глава 4</div>
+  <h2>Клубна Пирамида и Път на Детето</h2>
+
+  <div class="section">
+    <h3>4.1 Защо е необходима пирамида?</h3>
+    <p>Без ясна структура съществуват само две крайности: масов спорт и елит. Пирамидата изгражда прехода между тях — с ясни критерии, ясна посока и постоянна конкуренция.</p>
+    <div class="callout-light"><p>„Рамката не ни ограничава — тя ни дава ресурса да паднат ограниченията."</p></div>
   </div>
 
   <div class="section">
-    <h3>4.1 Защо е необходима клубна пирамида?</h3>
-    <p>Един от най-често срещаните проблеми в българските спортни клубове е липсата на ясно структурирана система за развитие. Често съществуват само две крайности — масов спорт и състезателен спорт. Между тях липсва преход.</p>
-    <p>Клубната пирамида решава този проблем. Тя създава ясна структура, ясни цели, ясни критерии и ясен път за развитие.</p>
-  </div>
-
-  <div class="section">
-    <h3>4.2 Общ модел на пирамидата</h3>
+    <h3>4.2 Пирамида на клуба</h3>
     <div class="pyramid">
-      <div class="pyr-row"><div class="pyr-level" style="background:#0d1b2a; border-radius:10px 10px 0 0;"><div class="pyr-name">1500 ДЕЦА</div><div class="pyr-num">Спорт за здраве — основата</div></div></div>
-      <div class="pyr-arrow">↓</div>
-      <div class="pyr-row"><div class="pyr-level" style="background:#1a2f45;"><div class="pyr-name">Олимп Талант</div><div class="pyr-num">200–300 деца</div></div></div>
-      <div class="pyr-arrow">↓</div>
-      <div class="pyr-row"><div class="pyr-level" style="background:#243d57;"><div class="pyr-name">Перспективни групи</div><div class="pyr-num">150–180 деца</div></div></div>
-      <div class="pyr-arrow">↓</div>
-      <div class="pyr-row"><div class="pyr-level" style="background:#1e6fa0;"><div class="pyr-name">Б Отбор</div><div class="pyr-num">80–100 деца</div></div></div>
-      <div class="pyr-arrow">↓</div>
-      <div class="pyr-row"><div class="pyr-level" style="background:#3a8fbf;"><div class="pyr-name">А Отбор</div><div class="pyr-num">60 състезатели</div></div></div>
-      <div class="pyr-arrow">↓</div>
-      <div class="pyr-row"><div class="pyr-level" style="background:#c8922a;"><div class="pyr-name">ДЛОП Състав</div><div class="pyr-num">96 участия годишно</div></div></div>
-      <div class="pyr-arrow">↓</div>
-      <div class="pyr-row"><div class="pyr-level" style="background:#e8b84b; border-radius:0 0 10px 10px;"><div class="pyr-name" style="color:#0d1b2a;">Финалисти / Медалисти / Национален отбор</div><div class="pyr-num" style="color:rgba(13,27,42,0.7);">Върхът на системата</div></div></div>
+      <div class="pyr-level" style="background:#0d1b2a;border-radius:8px 8px 0 0;">
+        <div class="pyr-name">1500+ ДЕЦА</div><div class="pyr-num">Спорт за здраве — основата</div>
+      </div>
+      <div class="pyr-arrow">▼</div>
+      <div class="pyr-level" style="background:#1a2f45;">
+        <div class="pyr-name">ОЛИМП ПОТЕНЦИАЛ</div><div class="pyr-num">200–300 деца с потенциал наблюдавани</div>
+      </div>
+      <div class="pyr-arrow">▼</div>
+      <div class="pyr-level" style="background:#1e6fa0;">
+        <div class="pyr-name">Б ОТБОР <span style="font-size:11px;opacity:.7;">— цел 2030</span></div>
+        <div class="pyr-num">173 деца · 11–12г: 75 · 13–14г: 53 · 15–16г: 30 · 17+г: 15</div>
+      </div>
+      <div class="pyr-arrow">▼</div>
+      <div class="pyr-level" style="background:#3a8fbf;">
+        <div class="pyr-name">А ОТБОР <span style="font-size:11px;opacity:.7;">— цел 2030</span></div>
+        <div class="pyr-num">115 деца · 11–12г: 50 · 13–14г: 35 · 15–16г: 20 · 17+г: 10</div>
+      </div>
+      <div class="pyr-arrow">▼</div>
+      <div class="pyr-level" style="background:#c8922a;">
+        <div class="pyr-name" style="color:#3d2800;">ДЛОП СЪСТАВ</div><div class="pyr-num" style="color:rgba(61,40,0,.75);">96 участия на Държавни ПВ годишно</div>
+      </div>
+      <div class="pyr-arrow">▼</div>
+      <div class="pyr-level" style="background:#e8b84b;border-radius:0 0 8px 8px;">
+        <div class="pyr-name" style="color:#3d2800;">ФИНАЛИСТИ / МЕДАЛИСТИ / НАЦИОНАЛЕН ОТБОР</div>
+        <div class="pyr-num" style="color:rgba(61,40,0,.7);">Върхът на системата</div>
+      </div>
     </div>
-    <div class="callout-light">
-      <p>Основната идея е проста: не се опитваме да създадем шампион от всяко дете. Създаваме система, която постепенно открива и развива потенциала.</p>
+
+    <!-- Pyramid chart -->
+    <div class="chart-wrap" style="margin-top:1.5rem;">
+      <div class="chart-title">Текущо vs Цел 2030 — картотекирани деца и целеви А/Б Отбор по възраст</div>
+      <canvas id="chartPyramid"></canvas>
     </div>
   </div>
 
   <div class="section">
-    <h3>4.3 Ниво 1 — Спорт за здраве</h3>
-    <p><strong>Приблизителен брой:</strong> 1200–1500 деца</p>
-    <p>Основна цел: изграждане на любов към спорта, правилни навици, техника, физическа култура и дисциплина.</p>
-    <div class="callout-light">
-      <p>Спортът за здраве не е отделен от състезателния спорт — той е неговата основа. Всеки бъдещ финалист и медалист започва именно оттук.</p>
-    </div>
-    <h4>Задачи на треньорите</h4>
-    <ul class="bullet-list"><li>да обучават</li><li>да наблюдават</li><li>да откриват потенциал</li></ul>
-    <h4>KPI</h4>
-    <ul class="bullet-list"><li>задържане на деца</li><li>посещаемост</li><li>предложени деца за Олимп Талант</li><li>участие във вътрешни турнири</li></ul>
-  </div>
-
-  <div class="section">
-    <h3>4.4 Ниво 2 — Олимп Талант</h3>
-    <p><strong>Приблизителен брой:</strong> 200–300 деца</p>
-    <p>Основна цел: Селекция и наблюдение. Не е група, не е тренировъчен процес, не е отбор — това е база данни от перспективни деца. Влиза се по предложение на треньор. Успехът е детето да бъде насочено към Перспективна група.</p>
-    <h4>Какво се следи</h4>
-    <ul class="bullet-list"><li>техника</li><li>отношение</li><li>посещаемост</li><li>потенциал</li><li>дисциплина</li></ul>
-  </div>
-
-  <div class="section">
-    <h3>4.5 Ниво 3 — Перспективни групи</h3>
-    <p><strong>Приблизителен брой:</strong> 150–180 деца</p>
-    <p>Основна цел: Преход между масовото плуване и състезателния спорт. Децата участват на вътрешни и първи външни турнири и изграждат състезателно мислене.</p>
-    <div class="callout-gold">
-      <p><strong>Основен въпрос:</strong> Не „Колко е талантливо детето?", а „Колко е готово да работи?"</p>
-    </div>
-    <p><strong>Изисквания:</strong> редовност, дисциплина, желание за развитие.</p>
-  </div>
-
-  <div class="section">
-    <h3>4.6 Ниво 4 — Б Отбор</h3>
-    <p><strong>Приблизителен брой:</strong> 80–100 деца</p>
-    <p>Основна цел: Подготовка за А Отбор. Б Отбор е най-важната състезателна група, защото именно тук се изгражда конкуренцията.</p>
-    <div class="callout-light">
-      <p>В Б Отбор се влиза. В Б Отбор се остава. Но и се излиза. Местата не са гарантирани.</p>
-    </div>
-    <p>Развиват се: състезателна култура, постоянство, нормативи, отговорност.</p>
-    <h4>Критерии</h4>
-    <ul class="bullet-list"><li>посещаемост</li><li>отношение</li><li>развитие</li><li>резултати</li></ul>
-  </div>
-
-  <div class="section">
-    <h3>4.7 Ниво 5 — А Отбор</h3>
-    <p><strong>Приблизителен брой:</strong> 60 състезатели</p>
+    <h3>4.3–4.8 Нива детайлно</h3>
     <table class="styled-table">
-      <thead><tr><th>Възраст</th><th>Б Отбор</th><th>А Отбор</th></tr></thead>
+      <thead><tr><th>Ниво</th><th>Брой</th><th>Цел</th><th>Ключов принцип</th></tr></thead>
       <tbody>
-        <tr><td>Деца</td><td>25</td><td>15</td></tr>
-        <tr><td>Младша</td><td>25</td><td>15</td></tr>
-        <tr><td>Старша</td><td>25</td><td>15</td></tr>
-        <tr><td>Мъже и жени</td><td>25</td><td>15</td></tr>
+        <tr><td>Спорт за здраве</td><td>1200–1500</td><td>Любов, навици, техника</td><td>Основата на всичко</td></tr>
+        <tr><td>Олимп Потенциал</td><td>200–300</td><td>Наблюдение, селекция</td><td>Труд + Потенциал</td></tr>
+        <tr><td>Б Отбор</td><td>173</td><td>Конкуренция, нормативи</td><td>Местата не са гарантирани</td></tr>
+        <tr><td>А Отбор</td><td>115</td><td>ДЛОП, финали, медали</td><td>Не награда — отговорност</td></tr>
+        <tr><td>ДЛОП</td><td>96/год.</td><td>Представяне на Д.П.</td><td>Има избор, има конкуренция</td></tr>
       </tbody>
     </table>
-    <div class="callout">
-      <p>А Отбор не е награда. А Отбор е отговорност. Очаква се висока дисциплина, професионално отношение, постоянство и пример за останалите.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>4.8 Ниво 6 — ДЛОП Състав</h3>
-    <p>Това е представителният отбор на клуба. Отделен от А Отбор, защото трябва да има конкуренция.</p>
-    <div class="callout-gold">
-      <p>А Отбор: 15 момчета + 15 момичета → ДЛОП: 12 момчета + 12 момичета. Това означава: има избор, има конкуренция, има мотивация.</p>
-    </div>
   </div>
 
   <div class="section">
     <h3>4.9 Движение между нивата</h3>
-    <p>Системата трябва да бъде жива, не статична. Оценяванията са в Септември, Декември, Март и Юли. Съществуват три възможности: качване нагоре, оставане или връщане назад.</p>
-    <div class="callout">
-      <p>Всички деца трябва да знаят: нивото се определя от развитието. Не от симпатии. Не от стаж. Не от име.</p>
+    <p>Системата е жива. Оценяванията са четири пъти годишно: Септември, Декември, Март, Юли.</p>
+    <div class="callout"><p>Нивото се определя от <strong>развитието</strong>. Не от симпатии. Не от стаж. Не от мнение.</p></div>
+  </div>
+</div>
+
+<div class="chapter-divider"></div>
+
+<!-- ════ ГЛАВА 5 ════ -->
+<div id="ch5" class="chapter page">
+  <div class="chapter-num">Глава 5</div>
+  <h2>Организационна Структура</h2>
+
+  <div class="section">
+    <h3>5.1 Основен принцип</h3>
+    <div class="callout"><p>Всеки треньор работи за клуба — не само за собствената си група.<br>Вместо: „Това са моите деца." → „Това са деца на НСК Олимп."</p></div>
+  </div>
+
+  <div class="section">
+    <h3>5.2 Структура на треньорския екип</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div><div class="step-title">Главен треньор</div><div class="step-desc">Определя политиката, одобрява движението между нивата, следи наборите.</div></div></div>
+      <div class="step"><div class="step-num">2</div><div><div class="step-title">Координатор „Олимп Потенциал" (1–2 души)</div><div class="step-desc">Поддържа базата, организира оценяванията, управлява мини екипите.</div></div></div>
+      <div class="step"><div class="step-num">3</div><div><div class="step-title">Треньори Спорт за здраве (8–10)</div><div class="step-desc">Обучение, наблюдение, подаване на деца с потенциал към Олимп Потенциал.</div></div></div>
+      <div class="step"><div class="step-num">4</div><div><div class="step-title">Треньори Б Отбор</div><div class="step-desc">Преход, първи турнири, изграждане на навик за труд.</div></div></div>
+      <div class="step"><div class="step-num">5</div><div><div class="step-title">Треньори Б Отбор (2–3) и А Отбор (5–6)</div><div class="step-desc">Единен екип с обща философия — подготовка за ДЛОП, финали, медали. Разделят задачите по възрастови групи.</div></div></div>
     </div>
   </div>
 
   <div class="section">
-    <h3>4.10 Как изглежда успешната пирамида след 5 години?</h3>
-    <div class="steps">
-      <div class="step"><div class="step-num">→</div><div class="step-body"><div class="step-title">1500 деца</div><div class="step-desc">300 в Олимп Талант → 180 Перспективни групи</div></div></div>
-      <div class="step"><div class="step-num">→</div><div class="step-body"><div class="step-title">100 Б Отбор → 60 А Отбор</div><div class="step-desc">96 участници на държавни първенства годишно (24 във всяка възраст)</div></div></div>
-      <div class="step"><div class="step-num">→</div><div class="step-body"><div class="step-title">30–40 финалисти → 15–20 медалисти</div><div class="step-desc">5–10 национални състезатели</div></div></div>
-    </div>
-    <div class="callout">
-      <p>Клубната пирамида е механизмът, който превръща масовия спорт в състезателен успех. Без пирамида клубът разчита на отделни таланти. С пирамида клубът изгражда система.</p>
+    <h3>5.3 KPI за треньорите</h3>
+    <h4>Спорт за здраве</h4>
+    <div class="kpi-item"><span class="kpi-label">Задържане на деца</span><div class="kpi-track"><div class="kpi-fill kpi-fill-navy" style="width:30%"></div></div><span class="kpi-val">30%</span></div>
+    <div class="kpi-item"><span class="kpi-label">Посещаемост</span><div class="kpi-track"><div class="kpi-fill kpi-fill-navy" style="width:20%"></div></div><span class="kpi-val">20%</span></div>
+    <div class="kpi-item"><span class="kpi-label">Деца в Олимп Потенциал</span><div class="kpi-track"><div class="kpi-fill kpi-fill-navy" style="width:20%"></div></div><span class="kpi-val">20%</span></div>
+    <div class="kpi-item"><span class="kpi-label">Преминали към следващо ниво</span><div class="kpi-track"><div class="kpi-fill kpi-fill-navy" style="width:20%"></div></div><span class="kpi-val">20%</span></div>
+    <div class="kpi-item"><span class="kpi-label">Прираст на резултатите (%)</span><div class="kpi-track"><div class="kpi-fill kpi-fill-navy" style="width:10%"></div></div><span class="kpi-val">10%</span></div>
+    <h4>А и Б Отбор</h4>
+    <div class="kpi-item"><span class="kpi-label">Нормативи</span><div class="kpi-track"><div class="kpi-fill kpi-fill-water" style="width:25%"></div></div><span class="kpi-val">25%</span></div>
+    <div class="kpi-item"><span class="kpi-label">Финали</span><div class="kpi-track"><div class="kpi-fill kpi-fill-water" style="width:20%"></div></div><span class="kpi-val">20%</span></div>
+    <div class="kpi-item"><span class="kpi-label">Медали</span><div class="kpi-track"><div class="kpi-fill kpi-fill-water" style="width:20%"></div></div><span class="kpi-val">20%</span></div>
+    <div class="kpi-item"><span class="kpi-label">Развитие на състезатели</span><div class="kpi-track"><div class="kpi-fill kpi-fill-water" style="width:20%"></div></div><span class="kpi-val">20%</span></div>
+    <div class="kpi-item"><span class="kpi-label">Прираст на резултатите (%)</span><div class="kpi-track"><div class="kpi-fill kpi-fill-water" style="width:15%"></div></div><span class="kpi-val">15%</span></div>
+
+    <div class="callout-gold" style="margin-top:1rem;">
+      <p><strong>Прираст на резултатите</strong> = средно % подобрение на времената на групата спрямо предходния период. Измерва качеството на тренировъчния процес обективно.</p>
     </div>
   </div>
 </div>
 
 <div class="chapter-divider"></div>
 
-<!-- ГЛАВА 5 -->
-<div id="ch5" class="chapter page fade-in">
-  <div class="chapter-header">
-    <div class="chapter-num">Глава 5</div>
-    <h2>Организационна структура и роля на треньорския екип</h2>
-  </div>
+<!-- ════ ГЛАВА 6 ════ -->
+<div id="ch6" class="chapter page">
+  <div class="chapter-num">Глава 6</div>
+  <h2>SWOT Анализ и Анализ на Наборите</h2>
 
   <div class="section">
-    <h3>5.1 Защо е необходима организационна структура?</h3>
-    <p>При клуб с 1500 деца и 15–16 треньори не е възможно цялата организационна, административна и състезателна дейност да бъде концентрирана в един или двама души. Това води до претоварване, забавяне на процесите, пропускане на възможности и намаляване на ефективността.</p>
-  </div>
-
-  <div class="section">
-    <h3>5.2 Основен принцип</h3>
-    <div class="callout">
-      <p>Всеки треньор работи за клуба, не само за собствената си група. Вместо „Това са моите деца" трябва да се стигне до „Това са деца на НСК Олимп." Така клубът започва да работи като академия.</p>
+    <h3>6.1 SWOT Матрица — НСК Олимп</h3>
+    <div class="swot-grid">
+      <div class="swot-header sh-s">✓ СИЛНИ СТРАНИ</div>
+      <div class="swot-header sh-w">✗ СЛАБИ СТРАНИ</div>
+      <div class="swot-cell sc-s"><ul>
+        <li>1500+ деца — най-голяма база за селекция в България</li>
+        <li>15–16 квалифицирани треньори</li>
+        <li>10 басейна в цяла София — широко покритие</li>
+        <li>Хиляди медали от национални и международни турнири · 6 международни медала · 37 национални рекорда</li>
+        <li>Собствен онлайн магазин (Speedo партньор)</li>
+        <li>Силна философия: All In Attitude, 21 ценности</li>
+        <li>Табло за клубни рекорди — прозрачност</li>
+        <li>Спечелена Къпа на България 2025</li>
+      </ul></div>
+      <div class="swot-cell sc-w"><ul>
+        <li>Липса на централизирана система за Потенциал Tracking</li>
+        <li>Неравномерни набори — дупки в определени години</li>
+        <li>Липса на вътрешна конкуренция в отделни групи</li>
+        <li>Претоварване на отделни хора в организацията</li>
+        <li>Деца минават директно от масово към ДП без преход</li>
+        <li>Липса на мини-екипна структура за самоуправление</li>
+      </ul></div>
+      <div class="swot-header sh-o">↑ ВЪЗМОЖНОСТИ</div>
+      <div class="swot-header sh-t">! ЗАПЛАХИ</div>
+      <div class="swot-cell sc-o"><ul>
+        <li>Олимп Потенциал: 75–150 деца с потенциал системно наблюдавани</li>
+        <li>Растяща интеграция спорт+училище</li>
+        <li>Нарастващ интерес към плуването</li>
+        <li>Международни турнири — опит за децата</li>
+        <li>Потенциал за партньорства с училища и детски градини</li>
+      </ul></div>
+      <div class="swot-cell sc-t"><ul>
+        <li>Отказване от спорта 11–14 г. — критична зона</li>
+        <li>Конкуренция от футбол, баскетбол, бойни спортове</li>
+        <li>Конкуренция от други плувни клубове в София</li>
+        <li>Зависимост от отделни личности — системата трябва да е по-силна</li>
+        <li>Липса на приемственост при смяна на треньори</li>
+      </ul></div>
     </div>
   </div>
 
+  
+
   <div class="section">
-    <h3>5.3 Предложена структура</h3>
-    <div class="steps">
-      <div class="step"><div class="step-num" style="background:var(--gold); color:var(--navy);">1</div><div class="step-body"><div class="step-title">Главен треньор</div><div class="step-desc">Определя спортната политика, контролира движението между нивата, одобрява преминаванията, следи развитието на наборите. Цел: да гарантира, че цялата система работи в една посока.</div></div></div>
-      <div class="step"><div class="step-num" style="background:var(--gold); color:var(--navy);">2</div><div class="step-body"><div class="step-title">Координатор „Олимп Талант"</div><div class="step-desc">1 човек или комисия от 2–3 души. Поддържа базата данни, организира оценяванията, проследява талантите, анализира развитието. Цел: да не се изгуби нито едно перспективно дете.</div></div></div>
-      <div class="step"><div class="step-num" style="background:var(--gold); color:var(--navy);">3</div><div class="step-body"><div class="step-title">Треньори „Спорт за здраве" (8–10 треньора)</div><div class="step-desc">Основна мисия: Откриване на таланти. Задачи: обучение, наблюдение, участие във вътрешни турнири, подаване на деца към Олимп Талант.</div></div></div>
-      <div class="step"><div class="step-num" style="background:var(--gold); color:var(--navy);">4</div><div class="step-body"><div class="step-title">Перспективни групи (1–2 треньора)</div><div class="step-desc">Преход към състезателен спорт. KPI: участие в турнири, развитие на техника, преминаване към Б Отбор.</div></div></div>
-      <div class="step"><div class="step-num" style="background:var(--water); color:var(--white);">5</div><div class="step-body"><div class="step-title">Треньори на Б Отбор (2–3 треньора)</div><div class="step-desc">Подготовка на състезатели за А Отбор. KPI: покрити нормативи, развитие на състезатели, преминали към А Отбор.</div></div></div>
-      <div class="step"><div class="step-num" style="background:var(--water); color:var(--white);">6</div><div class="step-body"><div class="step-title">Треньори на А Отбор (3–4 треньора)</div><div class="step-desc">Подготовка за ДЛОП, финали, медали. KPI: финали, медали, национален отбор, развитие на състезатели.</div></div></div>
+    <h3>6.3 Анализ на наборите — проблемът с дупките</h3>
+    <div class="chart-wrap">
+      <div class="chart-title">Пример за неравномерни набори (илюстративно)</div>
+      <canvas id="chartNabori"></canvas>
     </div>
-  </div>
-
-  <div class="section">
-    <h3>5.4 Система за разпределение на задачите</h3>
-    <p>В момента много дейности са концентрирани в ограничен брой хора. Предлага се разпределение:</p>
-    <table class="styled-table">
-      <thead><tr><th>Дейност</th><th>Отговорник</th></tr></thead>
-      <tbody>
-        <tr><td>Състезания</td><td>1 треньор</td></tr>
-        <tr><td>Вътрешни турнири</td><td>1 треньор</td></tr>
-        <tr><td>Лагери</td><td>1 треньор</td></tr>
-        <tr><td>Олимп Талант</td><td>1 треньор</td></tr>
-        <tr><td>Социални мрежи</td><td>1 треньор</td></tr>
-        <tr><td>Анализ на резултати</td><td>1 треньор</td></tr>
-        <tr><td>Ранглисти</td><td>1 треньор</td></tr>
-      </tbody>
-    </table>
-    <div class="callout-gold">
-      <p>По този начин: всеки дава малко — клубът печели много.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>5.5 KPI система за треньорите</h3>
-    <h4>Направление „Спорт за здраве"</h4>
-    <div class="kpi-item"><span class="kpi-label">Задържане на деца</span><div class="kpi-track"><div class="kpi-fill" style="width:30%"></div></div><span class="kpi-val">30%</span></div>
-    <div class="kpi-item"><span class="kpi-label">Посещаемост</span><div class="kpi-track"><div class="kpi-fill" style="width:20%"></div></div><span class="kpi-val">20%</span></div>
-    <div class="kpi-item"><span class="kpi-label">Олимп Талант</span><div class="kpi-track"><div class="kpi-fill" style="width:20%"></div></div><span class="kpi-val">20%</span></div>
-    <div class="kpi-item"><span class="kpi-label">Преминали към следващо ниво</span><div class="kpi-track"><div class="kpi-fill" style="width:20%"></div></div><span class="kpi-val">20%</span></div>
-    <div class="kpi-item"><span class="kpi-label">Родителска удовлетвореност</span><div class="kpi-track"><div class="kpi-fill" style="width:10%"></div></div><span class="kpi-val">10%</span></div>
-
-    <h4>Направление „Високо спортно майсторство"</h4>
-    <div class="kpi-item"><span class="kpi-label">Нормативи</span><div class="kpi-track"><div class="kpi-fill" style="width:25%; background:linear-gradient(90deg,var(--water),#6ab5d8);"></div></div><span class="kpi-val">25%</span></div>
-    <div class="kpi-item"><span class="kpi-label">Финали</span><div class="kpi-track"><div class="kpi-fill" style="width:20%; background:linear-gradient(90deg,var(--water),#6ab5d8);"></div></div><span class="kpi-val">20%</span></div>
-    <div class="kpi-item"><span class="kpi-label">Медали</span><div class="kpi-track"><div class="kpi-fill" style="width:20%; background:linear-gradient(90deg,var(--water),#6ab5d8);"></div></div><span class="kpi-val">20%</span></div>
-    <div class="kpi-item"><span class="kpi-label">Развитие на състезатели</span><div class="kpi-track"><div class="kpi-fill" style="width:20%; background:linear-gradient(90deg,var(--water),#6ab5d8);"></div></div><span class="kpi-val">20%</span></div>
-    <div class="kpi-item"><span class="kpi-label">Задържане на състезатели</span><div class="kpi-track"><div class="kpi-fill" style="width:15%; background:linear-gradient(90deg,var(--water),#6ab5d8);"></div></div><span class="kpi-val">15%</span></div>
-  </div>
-
-  <div class="section">
-    <h3>5.6 Оценяване на треньорите</h3>
-    <div class="timeline">
-      <div class="tl-item"><div class="tl-label">Септември</div><div class="tl-text">Старт на сезона</div></div>
-      <div class="tl-item"><div class="tl-label">Януари</div><div class="tl-text">Междинен анализ</div></div>
-      <div class="tl-item"><div class="tl-label">Май</div><div class="tl-text">Подготовка за летните държавни</div></div>
-      <div class="tl-item"><div class="tl-label">Юли</div><div class="tl-text">Годишен отчет</div></div>
-    </div>
-    <div class="callout-light"><p>Целта не е контрол. Целта е обратна връзка.</p></div>
-  </div>
-
-  <div class="section">
-    <h3>5.7 Как изглежда успешният треньор след 5 години?</h3>
-    <p>Не е задължително това да е човекът с най-много медали. Успешният треньор е този, който:</p>
-    <ul class="bullet-list">
-      <li>развива деца</li>
-      <li>задържа деца</li>
-      <li>открива таланти</li>
-      <li>работи за клуба</li>
-      <li>създава приемственост</li>
-    </ul>
-    <div class="callout">
-      <p>Организационната структура е механизмът, който превръща група от треньори в екип. Когато всеки има ясна роля — натоварването намалява, ефективността се повишава, повече деца получават шанс и клубът работи като единна система.</p>
-    </div>
-  </div>
-</div>
-
-<div class="chapter-divider"></div>
-
-<!-- ГЛАВА 6 -->
-<div id="ch6" class="chapter page fade-in">
-  <div class="chapter-header">
-    <div class="chapter-num">Глава 6</div>
-    <h2>SWOT анализ и анализ на наборите</h2>
-  </div>
-
-  <div class="section">
-    <h3>6.1 Защо е необходим SWOT анализ?</h3>
-    <p>Много клубове планират бъдещето си единствено на база желания. Успешните клубове планират бъдещето си на база реални факти. SWOT анализът позволява да бъдат оценени силните страни, слабите страни, възможностите и рисковете — това е първата стъпка към устойчиво развитие.</p>
-  </div>
-
-  <div class="section">
-    <h3>6.2 Силни страни (Strengths)</h3>
-    <div class="card-grid">
-      <div class="card"><div class="card-title"><span class="card-title-dot" style="background:#27ae60;"></span>Голям брой деца</div><p>Над 1500 деца — докато други клубове търсят деца, Олимп вече разполага с огромна база за селекция.</p></div>
-      <div class="card"><div class="card-title"><span class="card-title-dot" style="background:#27ae60;"></span>Голям треньорски екип</div><p>15–16 треньори позволяват специализация, разпределение на задачите и отделни нива в системата.</p></div>
-      <div class="card"><div class="card-title"><span class="card-title-dot" style="background:#27ae60;"></span>Утвърдено име</div><p>Олимп е разпознаваем клуб — улеснява привличането и задържането на деца и изграждането на доверие.</p></div>
-      <div class="card"><div class="card-title"><span class="card-title-dot" style="background:#27ae60;"></span>Налични традиции</div><p>Клубът вече има финалисти, медалисти и национални състезатели — натрупан опит и силна общност.</p></div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>6.3 Слаби страни (Weaknesses)</h3>
-    <div class="card-grid">
-      <div class="card"><div class="card-title"><span class="card-title-dot" style="background:#c0392b;"></span>Липса на единна система за селекция</div><p>Процесът зависи от отделния треньор, което създава различни стандарти.</p></div>
-      <div class="card"><div class="card-title"><span class="card-title-dot" style="background:#c0392b;"></span>Липса на проследяване</div><p>След откриване на талант — често няма система за наблюдение.</p></div>
-      <div class="card"><div class="card-title"><span class="card-title-dot" style="background:#c0392b;"></span>Малко участия в състезания</div><p>Голяма част от децата никога не стигат до състезателна среда. Намалява мотивацията и ангажираността.</p></div>
-      <div class="card"><div class="card-title"><span class="card-title-dot" style="background:#c0392b;"></span>Претоварване на отделни хора</div><p>Голяма част от организационната работа е концентрирана в малък брой хора. Риск от грешки и зависимост.</p></div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>6.4 Възможности (Opportunities)</h3>
-    <ul class="bullet-list">
-      <li><strong>Олимп Талант</strong> — ако всеки треньор ежегодно открива 5–10 деца, клубът разполага с огромен резерв</li>
-      <li><strong>Вътрешни турнири</strong> — втори вътрешен турнир, повече дисциплини, повече участия, повече мотивация</li>
-      <li><strong>Турнири в София</strong> — много деца могат да направят първи стъпки без напрежението на държавните</li>
-      <li><strong>По-силна клубна идентичност</strong> — колкото повече деца участват в състезания, толкова по-силна е връзката с клуба</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h3>6.5 Заплахи (Threats)</h3>
-    <ul class="bullet-list">
-      <li><strong>Отказване от спорта</strong> — особено опасно във възраст 11–14 години</li>
-      <li><strong>Конкуренция от други спортове</strong> — футбол, баскетбол, волейбол, бойни спортове</li>
-      <li><strong>Конкуренция от други клубове</strong> — талантливите деца винаги са обект на интерес</li>
-      <li><strong>Липса на приемственост</strong> — ако не се работи системно, се появяват дупки в наборите</li>
-      <li><strong>Зависимост от отделни личности</strong> — системата трябва да работи независимо кой е треньор</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h3>6.6 Анализ на наборите</h3>
-    <p>Това е може би най-важната част от стратегията. В определени години клубът разполага със силен набор, след няколко години се появява празнина.</p>
-    <div class="callout-gold">
-      <p><strong>Пример:</strong><br>Набор 2012: 20 състезатели<br>Набор 2013: 8 състезатели<br>Набор 2014: 25 състезатели</p>
-    </div>
-    <p>Дупките в наборите водят до: по-малка конкуренция, по-слаби щафети, по-малко точки и по-малко финалисти.</p>
-  </div>
-
-  <div class="section">
-    <h3>6.7 Защо се получават дупки?</h3>
-    <ul class="bullet-list">
+    <p>Дупките в наборите водят до: липса на конкуренция, слаби щафети, по-малко точки на ДП.</p>
+    <h4>Причини за дупките</h4>
+    <ul class="blist">
       <li>Липса на системна селекция</li>
       <li>Липса на проследяване</li>
-      <li>Липса на преход между нивата</li>
-      <li>Липса на конкуренция</li>
-      <li>Недостатъчно състезания</li>
+      <li>Липса на преход Олимп Потенциал → Б Отбор</li>
+      <li>Недостатъчно турнири за малките</li>
     </ul>
-  </div>
-
-  <div class="section">
-    <h3>6.8 Как системата решава проблема?</h3>
+    <h4>Решения чрез системата</h4>
     <table class="styled-table">
-      <thead><tr><th>Инструмент</th><th>Роля</th></tr></thead>
+      <thead><tr><th>Инструмент</th><th>Как решава дупките</th><th>Резултат</th></tr></thead>
       <tbody>
-        <tr><td>Олимп Талант</td><td>Осигурява постоянен поток от деца</td></tr>
-        <tr><td>Перспективни групи</td><td>Създават преход</td></tr>
-        <tr><td>Б Отбор</td><td>Изгражда резерв</td></tr>
-        <tr><td>А Отбор</td><td>Поддържа конкуренция</td></tr>
-        <tr><td>ДЛОП състав</td><td>Избира най-добрите</td></tr>
+        <tr><td>Олимп Потенциал</td><td>Постоянен поток от деца с потенциал от всички групи</td><td>Запълване на слаби набори</td></tr>
+        <tr><td>Б Отбор</td><td>Преход за деца 1–2 г. преди Б Отбор</td><td>Буфер срещу дупки</td></tr>
+        <tr><td>Б Отбор (пирамидален)</td><td>Повече деца в основата — повече избор</td><td>По-силни щафети</td></tr>
+        <tr><td>4 оценки/год.</td><td>Ранно идентифициране на слаби набори</td><td>Проактивна реакция</td></tr>
+        <tr><td>Мини екип „Развитие"</td><td>Следи показателите и алармира</td><td>Системно управление</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="section">
-    <h3>6.9 Цел за след 5 години</h3>
-    <p>Във всяка възраст: минимум 25 в Б Отбор, минимум 15 в А Отбор, пълен ДЛОП (12+12) и реална конкуренция за всяко място.</p>
-  </div>
-
-  <div class="section">
-    <h3>6.10 Стратегически извод</h3>
-    <div class="callout">
-      <p>Най-голямата опасност пред клуба не е липсата на талант — а талантът да не бъде открит навреме. Най-голямата възможност не е привличането на още деца — а по-доброто използване на вече наличните 1500.</p>
-    </div>
+    <h3>6.4 Цел след 5 години</h3>
+    <p>Всяка възраст да има пълни набори с реална конкуренция: мин. 75 в Б Отбор (пирамидално), мин. 50 в А Отбор, пълен ДЛОП (12+12 за всяка група).</p>
+    <div class="callout"><p><strong>Стратегически извод:</strong> Най-голямата опасност не е липсата на талант — а талантът и трудолюбието да не бъдат открити навреме. Системата е отговорът.</p></div>
   </div>
 </div>
 
 <div class="chapter-divider"></div>
 
-<!-- ГЛАВА 7 -->
-<div id="ch7" class="chapter page fade-in">
-  <div class="chapter-header">
-    <div class="chapter-num">Глава 7</div>
-    <h2>KPI система и оценяване на треньорите и децата</h2>
+<!-- ════ ГЛАВА 7 ════ -->
+<div id="ch7" class="chapter page">
+  <div class="chapter-num">Глава 7</div>
+  <h2>KPI Система и Оценяване</h2>
+
+  <div class="section">
+    <h3>7.1 Основен принцип</h3>
+    <div class="callout"><p>Преминаването между нивата се определя от:<br><strong>Потенциал · Труд · Дисциплина · Посещаемост · Резултати</strong></p></div>
   </div>
 
   <div class="section">
-    <h3>7.1 Защо е необходима система за оценяване?</h3>
-    <p>Един от най-честите проблеми е липсата на обективност. Решенията се взимат на база лично мнение, моментно впечатление, единичен резултат или емоция. Целта на настоящата глава е да създаде прозрачност, обективност, проследяемост и ясни критерии.</p>
-  </div>
+    <h3>7.2 Система от 100 точки</h3>
+    <div class="kpi-item"><span class="kpi-label">Техника</span><div class="kpi-track"><div class="kpi-fill kpi-fill-navy" style="width:30%"></div></div><span class="kpi-val">30 т.</span></div>
+    <div class="kpi-item"><span class="kpi-label">Посещаемост</span><div class="kpi-track"><div class="kpi-fill kpi-fill-navy" style="width:20%"></div></div><span class="kpi-val">20 т.</span></div>
+    <div class="kpi-item"><span class="kpi-label">Отношение и дисциплина</span><div class="kpi-track"><div class="kpi-fill kpi-fill-navy" style="width:20%"></div></div><span class="kpi-val">20 т.</span></div>
+    <div class="kpi-item"><span class="kpi-label">Труд и упоритост</span><div class="kpi-track"><div class="kpi-fill kpi-fill-navy" style="width:15%"></div></div><span class="kpi-val">15 т.</span></div>
+    <div class="kpi-item"><span class="kpi-label">Резултати и прогрес</span><div class="kpi-track"><div class="kpi-fill kpi-fill-navy" style="width:15%"></div></div><span class="kpi-val">15 т.</span></div>
 
-  <div class="section">
-    <h3>7.2 Основен принцип</h3>
-    <div class="callout">
-      <p>В НСК Олимп преминаването между нивата не се определя единствено от времената. То се определя от комбинация между: <strong>Потенциал · Отношение · Дисциплина · Посещаемост · Резултати</strong></p>
+    <div class="chart-wrap" style="margin-top:1rem;">
+      <div class="chart-title">Разпределение на точките (100 т. системата)</div>
+      <canvas id="chartPoints"></canvas>
     </div>
   </div>
 
   <div class="section">
-    <h3>7.3 Оценяване на децата — система от 100 точки</h3>
-    <div class="kpi-item"><span class="kpi-label">Техника</span><div class="kpi-track"><div class="kpi-fill" style="width:30%"></div></div><span class="kpi-val">30 т.</span></div>
-    <div class="kpi-item"><span class="kpi-label">Посещаемост</span><div class="kpi-track"><div class="kpi-fill" style="width:20%"></div></div><span class="kpi-val">20 т.</span></div>
-    <div class="kpi-item"><span class="kpi-label">Отношение</span><div class="kpi-track"><div class="kpi-fill" style="width:20%"></div></div><span class="kpi-val">20 т.</span></div>
-    <div class="kpi-item"><span class="kpi-label">Потенциал</span><div class="kpi-track"><div class="kpi-fill" style="width:15%"></div></div><span class="kpi-val">15 т.</span></div>
-    <div class="kpi-item"><span class="kpi-label">Резултати</span><div class="kpi-track"><div class="kpi-fill" style="width:15%"></div></div><span class="kpi-val">15 т.</span></div>
+    <h3>7.3 Зони за развитие</h3>
+    <div class="zones">
+      <div class="zone zone-green"><div class="zone-label">🟢 Зелена зона</div><div class="zone-pts">80–100 т.</div><div class="zone-desc">Готов за следващо ниво</div></div>
+      <div class="zone zone-amber"><div class="zone-label">🟡 Жълта зона</div><div class="zone-pts">60–79 т.</div><div class="zone-desc">Нуждае се от развитие</div></div>
+      <div class="zone zone-red"><div class="zone-label">🔴 Червена зона</div><div class="zone-pts">под 60 т.</div><div class="zone-desc">Остава на текущото ниво</div></div>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);">Минималният прагове за всеки компонент поотделно = 5 т. (от макс. за компонента). Дете, получило 0 в труд/упоритост, не може да премине нагоре независимо от общия резултат.</p>
+  </div>
 
-    <h4>Техника (30 т.) — какво се оценява</h4>
-    <ul class="bullet-list"><li>позиция на тялото</li><li>работа на крака</li><li>работа на ръце</li><li>обръщания</li><li>стартове</li></ul>
-
-    <h4>Посещаемост (20 т.)</h4>
+  <div class="section">
+    <h3>7.4 Критерии за преминаване</h3>
     <table class="styled-table">
-      <thead><tr><th>Посещаемост</th><th>Точки</th></tr></thead>
+      <thead><tr><th>Преход</th><th>Общо мин.</th><th>Забележка</th></tr></thead>
       <tbody>
-        <tr><td>Над 90%</td><td>20 точки</td></tr>
-        <tr><td>80–90%</td><td>15 точки</td></tr>
-        <tr><td>70–80%</td><td>10 точки</td></tr>
-        <tr><td>Под 70%</td><td>5 точки</td></tr>
+        <tr><td>Спорт за здраве → Олимп Потенциал</td><td>70 т.</td><td>Мин. 5т. в труд/упоритост</td></tr>
+        <tr><td>Олимп Потенциал → Перспективна</td><td>75 т.</td><td>Мин. 6т. в труд/упоритост</td></tr>
+        <tr><td>Перспективна → Б Отбор</td><td>80 т.</td><td>Мин. 7т. в труд/упоритост</td></tr>
+        <tr><td>Б Отбор → А Отбор</td><td>85 т.</td><td>Мин. 8т. в труд/упоритост</td></tr>
+        <tr><td>А Отбор → ДЛОП</td><td>По резултат + класиране</td><td>Конкурентен подбор</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="section">
-    <h3>7.4 Категории</h3>
-    <div class="card-grid">
-      <div class="card" style="border-left:4px solid #27ae60;"><div class="card-title"><span class="card-title-dot" style="background:#27ae60;"></span>Зелена зона: 80–100 т.</div><p>Готов за следващо ниво.</p></div>
-      <div class="card" style="border-left:4px solid #f39c12;"><div class="card-title"><span class="card-title-dot" style="background:#f39c12;"></span>Жълта зона: 60–79 т.</div><p>Има потенциал, но се нуждае от развитие.</p></div>
-      <div class="card" style="border-left:4px solid #c0392b;"><div class="card-title"><span class="card-title-dot" style="background:#c0392b;"></span>Червена зона: под 60 т.</div><p>Остава на текущото ниво.</p></div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>7.5 Критерии за преминаване</h3>
-    <table class="styled-table">
-      <thead><tr><th>Преход</th><th>Минимум точки</th></tr></thead>
-      <tbody>
-        <tr><td>Спорт за здраве → Олимп Талант</td><td>70 точки</td></tr>
-        <tr><td>Олимп Талант → Перспективна група</td><td>75 точки</td></tr>
-        <tr><td>Перспективна група → Б Отбор</td><td>80 точки</td></tr>
-        <tr><td>Б Отбор → А Отбор</td><td>85 точки</td></tr>
-        <tr><td>А Отбор → ДЛОП</td><td>На база точки, класиране и резултати</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="section">
-    <h3>7.6 Клубна ранглиста</h3>
-    <p>За всяка възраст — момчета и момичета отделно. Обновяване всеки месец.</p>
+    <h3>7.5 Клубна ранглиста</h3>
+    <p>По възраст и пол. Обновяване всеки месец. Публикувана за треньори и деца.</p>
     <div class="callout-gold">
-      <p>Детето знае: <strong>Къде се намира.</strong><br>Родителят знае: <strong>Какво трябва да подобри.</strong><br>Треньорът знае: <strong>Кой се развива.</strong></p>
+      <p>Детето знае: <strong>Къде се намира.</strong></p>
+      <p>Родителят знае: <strong>Какво да подобри.</strong></p>
+      <p>Треньорът знае: <strong>Кой се развива.</strong></p>
     </div>
   </div>
 
   <div class="section">
-    <h3>7.9 Коефициент на развитие</h3>
-    <div class="callout-light">
-      <p><strong>Формула:</strong> Преминали към следващо ниво ÷ Общ брой деца<br>Пример: 50 деца, 5 преминали = коефициент <strong>10%</strong><br>Този показател много добре измерва качеството на работа.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>7.10 Годишен цикъл на оценяване</h3>
+    <h3>7.6 Годишен цикъл</h3>
     <div class="timeline">
-      <div class="tl-item"><div class="tl-label">Септември</div><div class="tl-text">Стартова оценка</div></div>
-      <div class="tl-item"><div class="tl-label">Декември</div><div class="tl-text">Междинна оценка</div></div>
-      <div class="tl-item"><div class="tl-label">Март</div><div class="tl-text">Пролетна оценка</div></div>
-      <div class="tl-item"><div class="tl-label">Юли</div><div class="tl-text">Годишна оценка — вземат се решения за качване, оставане или връщане</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Септември</div><div class="tl-text">Стартова оценка</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Декември</div><div class="tl-text">Междинна оценка</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Март</div><div class="tl-text">Пролетна оценка</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">Юли</div><div class="tl-text">Годишна — решения за движение между нивата</div></div>
     </div>
   </div>
 
   <div class="section">
-    <h3>7.11 Награждаване</h3>
-    <p>Всяка година се награждават:</p>
-    <ul class="bullet-list">
-      <li>Най-развит състезател</li>
-      <li>Най-прогресиращ състезател</li>
-      <li>Най-добра посещаемост</li>
-      <li>Треньор с най-висок коефициент на развитие</li>
-      <li>Треньор с най-много деца в Олимп Талант</li>
-    </ul>
-    <div class="callout-light"><p>Това създава положителна конкуренция.</p></div>
-  </div>
-
-  <div class="section">
-    <h3>7.12 Как изглежда успехът?</h3>
-    <p><strong>След 3 години:</strong> всяко дете има оценка, история и път за развитие.</p>
-    <p><strong>След 5 години:</strong> клубът разполага с реална база данни, решенията се взимат по критерии, конкуренцията е прозрачна, развитието е проследимо.</p>
-    <div class="callout">
-      <p>Системата за оценяване е гръбнакът на цялата стратегия. Без измерване няма управление. Без управление няма устойчив успех.</p>
-    </div>
+    <h3>7.7 Награждаване</h3>
+    <p>Всяка година се награждават: Най-развит · Най-прогресиращ · Най-добра посещаемост · Треньор с най-висок коефициент на развитие · Треньор с най-много деца с потенциал.</p>
+    <div class="callout-light"><p>Виж <strong>Приложение 1 — Спонсорски пакет</strong> за подробности относно наградите и тяхното финансиране.</p></div>
   </div>
 </div>
 
 <div class="chapter-divider"></div>
 
-<!-- ГЛАВА 8 -->
-<div id="ch8" class="chapter page fade-in">
-  <div class="chapter-header">
-    <div class="chapter-num">Глава 8</div>
-    <h2>Вътрешни турнири, тестове и състезателен календар</h2>
-  </div>
+<!-- ════ ГЛАВА 8 ════ -->
+<div id="ch8" class="chapter page">
+  <div class="chapter-num">Глава 8</div>
+  <h2>Турнири, Тестове и Календар</h2>
 
   <div class="section">
-    <h3>8.1 Защо са необходими повече състезания?</h3>
-    <p>Много деца тренират години наред, но никога не стартират, стартират прекалено рядко или участват само на едно състезание годишно. В резултат тренировъчният процес губи смисъл.</p>
-    <div class="callout">
-      <p><strong>Основен принцип:</strong> Състезанието е част от тренировъчния процес. То не е награда, не е наказание, не е привилегия. То е инструмент за развитие.</p>
-    </div>
+    <h3>8.1 Основен принцип</h3>
+    <div class="callout"><p>Състезанието е <strong>инструмент за развитие</strong> — не награда, не наказание, не привилегия. Колко нови деца ежегодно правят <strong>ПЪРВИ старт</strong> е най-важният показател.</p></div>
   </div>
 
   <div class="section">
     <h3>8.2 Състезателна пирамида</h3>
     <div class="steps">
-      <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Вътрешни тестове</div><div class="step-desc">Клубно ниво</div></div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Олимп Талант Къп</div><div class="step-desc">Първо реално състезание за много деца</div></div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Олимп Къп</div><div class="step-desc">Вътрешна конкуренция</div></div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Софийски турнири</div><div class="step-desc">Основен инструмент за развитие</div></div></div>
-      <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Регионални първенства</div><div class="step-desc"></div></div></div>
-      <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">ДЛОП</div><div class="step-desc"></div></div></div>
-      <div class="step"><div class="step-num">7</div><div class="step-body"><div class="step-title">Национален отбор</div><div class="step-desc">Върхът на пирамидата</div></div></div>
-    </div>
-    <p>Така всяко дете има логична следваща стъпка.</p>
-  </div>
-
-  <div class="section">
-    <h3>8.3 Олимп Талант Къп</h3>
-    <p>Основна идея: Това е първото състезание за голяма част от децата. Участници: Спорт за здраве и Олимп Талант. Дисциплини: 25 м, 50 м, щафети, забавни дисциплини. Наградите са максимално широки.</p>
-    <div class="callout-light"><p>Целта не е селекция. Целта е мотивация.</p></div>
-  </div>
-
-  <div class="section">
-    <h3>8.4 Олимп Къп</h3>
-    <p>Второто ниво. Основна цел: създаване на вътрешна конкуренция. Участват: Олимп Талант, Перспективни групи, Б Отбор, А Отбор. Треньорите виждат кои деца напредват, кои изостават и кои са готови за следващо ниво.</p>
-  </div>
-
-  <div class="section">
-    <h3>8.5 Софийски турнири</h3>
-    <p>Това трябва да бъде основният инструмент за развитие. В момента много деца скачат директно към държавните първенства — това е грешка. Правилният модел е: Вътрешен турнир → Софийски → Регионално → ДЛОП.</p>
-    <div class="callout-gold">
-      <p>Минимална цел: всяко перспективно дете — поне 2–3 старта годишно.<br>Оптимална цел: 4–6 старта годишно.</p>
+      <div class="step"><div class="step-num">1</div><div><div class="step-title">Вътрешни тестове (4×/год.)</div><div class="step-desc">Ноември, Февруари, Май, Юли — техника, стартове, 25/50/100 м</div></div></div>
+      <div class="step"><div class="step-num">2</div><div><div class="step-title">Олимп Потенциал Къп</div><div class="step-desc">Първо реално състезание. Цел: мотивация, не селекция. 25м, 50м, щафети.</div></div></div>
+      <div class="step"><div class="step-num">3</div><div><div class="step-title">Олимп Къп</div><div class="step-desc">Вътрешна конкуренция за всички нива</div></div></div>
+      <div class="step"><div class="step-num">4</div><div><div class="step-title">Турнири в София (Замората, Златоперки и др.)</div><div class="step-desc">Основен инструмент за развитие. Мин. 2–3 старта за всяко дете с потенциал.</div></div></div>
+      <div class="step"><div class="step-num">5</div><div><div class="step-title">Регионални → ДЛОП → Национален отбор</div><div class="step-desc">Финалните стъпки за доказали се деца</div></div></div>
     </div>
   </div>
 
   <div class="section">
-    <h3>8.6 Състезателен календар по нива</h3>
-    <table class="styled-table">
-      <thead><tr><th>Ниво</th><th>Участия/год.</th><th>Основна цел</th></tr></thead>
+    <h3>8.3 Календар по нива</h3>
+    <div class="chart-wrap">
+      <div class="chart-title">Брой участия в състезания по ниво (годишно)</div>
+      <canvas id="chartCalendar"></canvas>
+    </div>
+    <table class="styled-table" style="margin-top:.8rem;">
+      <thead><tr><th>Ниво</th><th>Мин. старта/год.</th><th>Оптимум</th><th>Цел</th></tr></thead>
       <tbody>
-        <tr><td>Спорт за здраве</td><td>1–2</td><td>Мотивация</td></tr>
-        <tr><td>Олимп Талант</td><td>2–3</td><td>Наблюдение</td></tr>
-        <tr><td>Перспективни групи</td><td>4–5</td><td>Натрупване на опит</td></tr>
-        <tr><td>Б Отбор</td><td>6–8</td><td>Нормативи</td></tr>
-        <tr><td>А Отбор</td><td>8–12</td><td>Финали и медали</td></tr>
+        <tr><td>Спорт за здраве</td><td>1</td><td>2</td><td>Мотивация и любов към спорта</td></tr>
+        <tr><td>Олимп Потенциал</td><td>2</td><td>3</td><td>Наблюдение и обратна връзка</td></tr>
+        <tr><td>Б Отбор</td><td>3</td><td>5</td><td>Натрупване на опит</td></tr>
+        <tr><td>Б Отбор</td><td>5</td><td>8</td><td>Нормативи и конкуренция</td></tr>
+        <tr><td>А Отбор</td><td>8</td><td>12</td><td>Финали и медали</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="section">
-    <h3>8.7–8.8 Клубни тестове</h3>
-    <p>Освен състезанията са необходими вътрешни контроли — Ноември (есенен), Февруари (зимен), Май (пролетен), Юли (годишен).</p>
-    <p>Тества се: техника, стартове, обръщания, 25 м скорост, 50 м, 100 м, специализиран стил.</p>
-  </div>
-
-  <div class="section">
-    <h3>8.9 Клубна ранглиста</h3>
-    <p>След всеки тест и всяко състезание се публикуват: ТОП 10 по възрасти, най-голям прогрес, най-добра посещаемост, най-добър технически резултат. Това мотивира децата.</p>
-  </div>
-
-  <div class="section">
-    <h3>8.11 Пример за развитие на едно дете</h3>
+    <h3>8.4 Пример — пътят на едно дете</h3>
     <div class="steps">
-      <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Година 1</div><div class="step-desc">Спорт за здраве → Олимп Талант</div></div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Година 2</div><div class="step-desc">Перспективна група → 2–3 турнира</div></div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Година 3</div><div class="step-desc">Б Отбор → Регионални първенства</div></div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Година 4</div><div class="step-desc">А Отбор → ДЛОП</div></div></div>
-      <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Година 5</div><div class="step-desc">Финалист → Медалист</div></div></div>
-    </div>
-    <p>Това е идеалният модел.</p>
-  </div>
-
-  <div class="section">
-    <h3>8.12 Основен показател за успех</h3>
-    <div class="callout">
-      <p>Не колко медала има клубът. А: <strong>Колко нови деца ежегодно започват да участват в състезания.</strong><br><br>Ако всяка година още 50 деца направят първи старт, още 20 преминат към Б Отбор и още 10 към А Отбор — системата работи.</p>
+      <div class="step"><div class="step-num">1</div><div><div class="step-title">Година 1 — Спорт за здраве → Олимп Потенциал</div><div class="step-desc">1–2 вътрешни турнира. Цел: да обикне водата.</div></div></div>
+      <div class="step"><div class="step-num">2</div><div><div class="step-title">Година 2 — Перспективна → 3–5 турнира</div><div class="step-desc">Първи Олимп Къп и Софийски турнир.</div></div></div>
+      <div class="step"><div class="step-num">3</div><div><div class="step-title">Година 3 — Б Отбор → Регионални</div><div class="step-desc">5–8 старта. Нормативи. Реална конкуренция.</div></div></div>
+      <div class="step"><div class="step-num">4</div><div><div class="step-title">Година 4 — А Отбор → ДЛОП</div><div class="step-desc">8–10 старта. Държавни първенства.</div></div></div>
+      <div class="step"><div class="step-num">5</div><div><div class="step-title">Година 5 — Финалист → Медалист</div><div class="step-desc">Върхът. Системата е работила.</div></div></div>
     </div>
   </div>
 </div>
 
 <div class="chapter-divider"></div>
 
-<!-- ГЛАВА 9 -->
-<div id="ch9" class="chapter page fade-in">
-  <div class="chapter-header">
-    <div class="chapter-num">Глава 9</div>
-    <h2>Тригодишен и петгодишен план за внедряване</h2>
+<!-- ════ ГЛАВА 9 ════ -->
+<div id="ch9" class="chapter page">
+  <div class="chapter-num">Глава 9</div>
+  <h2>Тригодишен и Петгодишен План</h2>
+
+  <div class="section">
+    <h3>9.1 Защо поетапен план?</h3>
+    <div class="callout-light"><p>Целта не е административна тежест. Целта е системата да заработи сама — и рамката на плана дава на всеки свободата да действа, знаейки накъде се върви.</p></div>
   </div>
 
   <div class="section">
-    <h3>9.1 Защо е необходим поетапен план?</h3>
-    <p>Една от най-честите причини добрите идеи да не успяват е опитът всичко да бъде въведено наведнъж. При клуб от мащаба на НСК Олимп всяка промяна трябва да бъде постепенна, разбираема, лесна за изпълнение и измерима.</p>
-    <div class="callout-light"><p>Целта на стратегията не е да създаде допълнителна административна тежест. Целта е постепенно да изгради система, която работи сама.</p></div>
-  </div>
-
-  <div class="section">
-    <h3>9.2 Начално състояние (2026)</h3>
-    <ul class="bullet-list">
-      <li>над 1500 деца</li>
-      <li>15–16 треньори</li>
-      <li>силно състезателно направление</li>
-      <li>наличие на отделни силни поколения</li>
-      <li>наличие на дупки в някои възрастови групи</li>
-      <li>липса на централизирана система за Talent Tracking</li>
+    <h3>9.2 Изходна точка (2026)</h3>
+    <ul class="blist">
+      <li>1500+ деца, 17 треньора, 10 басейна</li>
+      <li>Силно състезателно направление, но дупки в набори</li>
+      <li>Липса на централизиран Потенциал Tracking</li>
+      <li>Олимп Къп наградена с Къпа на България 2025</li>
     </ul>
   </div>
 
   <div class="section">
-    <h3>Година 1 (2026–2027) — Изграждане на системата</h3>
-    <p><strong>Основна цел:</strong> Изграждане на основата.</p>
-    <p>Какво се въвежда:</p>
-    <ul class="bullet-list">
-      <li>Олимп Талант — всеки треньор предлага 5–10 деца</li>
-      <li>Вътрешна ранглиста по възраст, пол и ниво</li>
-      <li>Клубни тестове — Септември, Декември, Март, Юли</li>
-      <li>Втори вътрешен турнир — Олимп Талант Къп</li>
-      <li>KPI система — пилотно въвеждане</li>
-    </ul>
-    <table class="styled-table">
-      <thead><tr><th>Ниво</th><th>Целеви брой</th></tr></thead>
-      <tbody>
-        <tr><td>Олимп Талант</td><td>100</td></tr>
-        <tr><td>Перспективни групи</td><td>80</td></tr>
-        <tr><td>Б Отбор</td><td>50</td></tr>
-        <tr><td>А Отбор</td><td>40</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="section">
-    <h3>Година 2 (2027–2028) — Разширяване</h3>
-    <p><strong>Основна цел:</strong> Изграждане на реална конкуренция.</p>
-    <ul class="bullet-list">
-      <li>Олимп Талант: цел 150–200 деца</li>
-      <li>Перспективни групи: цел 120–150 деца</li>
-      <li>Минимум 2–3 участия на перспективните деца в Софийски турнири</li>
-      <li>Формиране на реален резерв в Б Отбор</li>
-    </ul>
-    <table class="styled-table">
-      <thead><tr><th>Ниво</th><th>Целеви брой</th></tr></thead>
-      <tbody>
-        <tr><td>Олимп Талант</td><td>200</td></tr>
-        <tr><td>Перспективни групи</td><td>150</td></tr>
-        <tr><td>Б Отбор</td><td>80</td></tr>
-        <tr><td>А Отбор</td><td>50</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="section">
-    <h3>Година 3 (2028–2029) — Стабилизиране</h3>
-    <p><strong>Основна цел:</strong> Пълно функциониране на системата.</p>
-    <ul class="bullet-list">
-      <li>Олимп Талант работи във всички възрасти</li>
-      <li>Постоянен поток от Перспективни групи към Б Отбор</li>
-      <li>Реална конкуренция за местата в А Отбор</li>
-      <li>Разширен елитен А Отбор</li>
-    </ul>
-    <table class="styled-table">
-      <thead><tr><th>Ниво</th><th>Целеви брой</th></tr></thead>
-      <tbody>
-        <tr><td>Олимп Талант</td><td>300</td></tr>
-        <tr><td>Перспективни групи</td><td>180</td></tr>
-        <tr><td>Б Отбор</td><td>100</td></tr>
-        <tr><td>А Отбор</td><td>60</td></tr>
-      </tbody>
-    </table>
-    <div class="callout-gold"><p>Очакван ефект: пълни възрастови групи, по-малко дупки, по-силни щафети.</p></div>
-  </div>
-
-  <div class="section">
-    <h3>9.3 Петгодишна визия (2030)</h3>
-    <p>След пет години системата трябва да бъде напълно интегрирана.</p>
-    <table class="styled-table">
-      <thead><tr><th>Ниво</th><th>Брой</th></tr></thead>
-      <tbody>
-        <tr><td>Спорт за здраве</td><td>1500+</td></tr>
-        <tr><td>Олимп Талант</td><td>300</td></tr>
-        <tr><td>Перспективни групи</td><td>180</td></tr>
-        <tr><td>Б Отбор</td><td>100</td></tr>
-        <tr><td>А Отбор</td><td>60</td></tr>
-      </tbody>
-    </table>
-    <p><strong>ДЛОП Състав:</strong> За всяка възраст: 24 състезатели (12 момчета + 12 момичета) = 96 участия на държавни първенства годишно.</p>
-  </div>
-
-  <div class="section">
-    <h3>9.4 Как изглежда успехът през 2030?</h3>
-    <div class="card-grid">
-      <div class="card"><div class="card-title"><span class="card-title-dot" style="background:#27ae60;"></span>Количествени цели</div>
-        <ul class="bullet-list">
-          <li>300 деца в Олимп Талант</li>
-          <li>180 в Перспективни групи</li>
-          <li>100 в Б Отбор</li>
-          <li>60 в А Отбор</li>
-          <li>96 представители на държавни</li>
-        </ul>
-      </div>
-      <div class="card"><div class="card-title"><span class="card-title-dot" style="background:#c8922a;"></span>Качествени резултати</div>
-        <ul class="bullet-list">
-          <li>30–40 финалисти годишно</li>
-          <li>15–20 медалисти годишно</li>
-          <li>5–10 национални състезатели</li>
-        </ul>
-      </div>
+    <h3>9.3 Тригодишен план</h3>
+    <div class="chart-wrap">
+      <div class="chart-title">Целеви показатели по нива — 3 годишен план</div>
+      <canvas id="chartPlan"></canvas>
     </div>
+
+    <table class="styled-table" style="margin-top:1rem;">
+      <thead><tr><th>Ниво</th><th>2026 (старт)</th><th>2027 (Год.1)</th><th>2028 (Год.2)</th><th>2029 (Год.3)</th></tr></thead>
+      <tbody>
+        <tr><td>Олимп Потенциал</td><td>—</td><td>100</td><td>200</td><td>300</td></tr>
+        <tr><td>Б Отбор</td><td>~40</td><td>80</td><td>130</td><td>173</td></tr>
+        <tr><td>А Отбор</td><td>~50</td><td>70</td><td>95</td><td>115</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Година 1 (2026–2027) — Изграждане</h4>
+    <ul class="blist">
+      <li>Старт на Олимп Потенциал — всеки треньор предлага 5–10 деца</li>
+      <li>Вътрешна ранглиста по възраст и пол</li>
+      <li>4 клубни теста годишно + Олимп Потенциал Къп</li>
+      <li>Формиране на мини екипи с таргети</li>
+      <li>Пилотно въвеждане на KPI системата</li>
+    </ul>
+
+    <h4>Година 2 (2027–2028) — Разширяване</h4>
+    <ul class="blist">
+      <li>Олимп Потенциал: 200 деца с потенциал наблюдавани</li>
+      <li>2–3 участия на всяко дете с потенциал в Софийски турнири</li>
+      <li>Б Отбор изграден (130 деца)</li>
+      <li>Мини екипите работят автономно</li>
+    </ul>
+
+    <h4>Година 3 (2028–2029) — Стабилизиране</h4>
+    <ul class="blist">
+      <li>Пирамидален А и Б Отбор напълно функциониращ</li>
+      <li>300 деца с потенциал системно наблюдавани</li>
+      <li>Всяка възрастова група с пълни набори</li>
+      <li>Постоянен поток: Олимп Потенциал → Б Отбор → А Отбор → ДЛОП</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>9.4 Петгодишна визия (2030)</h3>
+    <div class="chart-wrap">
+      <div class="chart-title">Целева пирамида 2030 — А и Б Отбор по възрасти</div>
+      <canvas id="chartTarget"></canvas>
+    </div>
+
+    <table class="styled-table" style="margin-top:1rem;">
+      <thead><tr><th>Показател</th><th>Цел 2030</th></tr></thead>
+      <tbody>
+        <tr><td>Деца в Олимп Потенциал</td><td>300</td></tr>
+        <tr><td>Б Отбор (Деца/Мл./Ст./М-Ж)</td><td>75 / 53 / 30 / 15 = <strong>173</strong></td></tr>
+        <tr><td>А Отбор (Деца/Мл./Ст./М-Ж)</td><td>50 / 35 / 20 / 10 = <strong>115</strong></td></tr>
+        <tr><td>ДЛОП участия годишно</td><td>96</td></tr>
+        <tr><td>Финалисти годишно</td><td>30–40</td></tr>
+        <tr><td>Медалисти годишно</td><td>15–20</td></tr>
+        <tr><td>Национални състезатели</td><td>5–10</td></tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="section">
     <h3>9.5 Най-важният резултат</h3>
     <div class="callout">
-      <p>Най-важният резултат не е броят медали. Най-важният резултат е: <strong>да бъде изградена система, която ежегодно произвежда нови състезатели.</strong><br><br>Така успехът на клуба вече няма да зависи от отделен набор, треньор или талант. Успехът ще бъде резултат от работеща структура.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>Заключение на цялата стратегия</h3>
-    <p>НСК Олимп вече разполага с най-ценния ресурс: деца, треньори, име и традиции.</p>
-    <div class="callout-light">
-      <p>Следващата крачка не е да търсим повече ресурс. Следващата крачка е да организираме по-добре вече наличния ресурс.</p>
-    </div>
-    <p>Програмата „Олимп Талант", Перспективните групи, Б Отборът и А Отборът представляват единна система с една основна цел:</p>
-    <div class="callout">
-      <p>Да даде шанс на всяко талантливо дете. Да създаде постоянен поток от състезатели. Да гарантира устойчивото развитие на НСК Олимп през следващите 5 и повече години.</p>
+      <p>Не броят медали.</p>
+      <p><strong>Системата, която ежегодно произвежда нови деца с потенциал, нови Б Отборници, нови финалисти.</strong></p>
+      <p>Рамката е изградена. Тя дава на всеки — дете, треньор, клуб — ресурса да паднат ограниченията.</p>
     </div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer class="doc-footer">
-  <p><strong>НСК Олимп</strong> — Стратегия за развитие</p>
-  <p style="margin-top:8px;">Документът обхваща периода 2026–2030 г.</p>
+  <p><strong>НСК Олимп</strong> — „Рамката не ни ограничава — тя ни дава ресурса да паднат ограниченията."</p>
+  <p style="margin-top:8px;">Стратегия 2026–2030 · pluvane.com</p>
 </footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
-}, { threshold: 0.05 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+// ── Chart.js visualizations ──────────────────────────────────
+
+Chart.defaults.font.family = "'Segoe UI', Arial, sans-serif";
+Chart.defaults.color = '#2d3a4a';
+
+const NAVY='#0d1b2a', GOLD='#c8922a', WATER='#1e6fa0', WATER_L='#3a8fbf',
+      GREEN='#2e7d32', RED='#c62828', AMBER='#e65100', BLUE='#1565c0',
+      NAVY2='#1a2f45', NAVY3='#2c4a63';
+
+// 1. Club Overview Bar Chart
+new Chart(document.getElementById('chartOverview'), {
+  type:'bar',
+  data:{
+    labels:['Спорт за здраве','Олимп Потенциал','Б Отбор','А Отбор'],
+    datasets:[
+      {label:'Текущо (прибл.)',data:[1500,0,40,50],backgroundColor:'rgba(13,27,42,.4)',borderRadius:4},
+      {label:'Цел 2030',data:[1500,300,173,115],backgroundColor:[NAVY,NAVY2,WATER,WATER_L],borderRadius:4}
+    ]
+  },
+  options:{responsive:true,plugins:{legend:{position:'top'}},scales:{y:{beginAtZero:true}}}
+});
+
+// 2. Ages Radar
+new Chart(document.getElementById('chartAges'), {
+  type:'radar',
+  data:{
+    labels:['Техника','Труд/Упоритост','Психология','Тактика','Специализация','Резултати'],
+    datasets:[
+      {label:'7–10 г.',data:[8,6,5,3,2,2],borderColor:GOLD,backgroundColor:'rgba(200,146,42,.15)',pointBackgroundColor:GOLD},
+      {label:'11–14 г.',data:[7,9,7,6,5,5],borderColor:WATER,backgroundColor:'rgba(30,111,160,.15)',pointBackgroundColor:WATER},
+      {label:'15–18 г.',data:[9,9,9,8,9,8],borderColor:GREEN,backgroundColor:'rgba(46,125,50,.15)',pointBackgroundColor:GREEN},
+    ]
+  },
+  options:{responsive:true,plugins:{legend:{position:'top'}},scales:{r:{min:0,max:10,ticks:{stepSize:2}}}}
+});
+
+// 3. Pyramid chart - current vs target
+new Chart(document.getElementById('chartPyramid'), {
+  type:'bar',
+  data:{
+    labels:['Злата рибка\n(7–8 г.)','Весел делфин\n(9–10 г.)','Деца\n(11–12 г.)','Младша\n(13–14 г.)','Старша\n(15–16 г.)','Мъже/Жени\n(17+ г.)'],
+    datasets:[
+      {
+        label:'Текущо (картотекирани)',
+        data:[4,18,21,15,18,4],
+        backgroundColor:'rgba(200,146,42,0.85)',
+        borderRadius:4
+      },
+      {
+        label:'Цел А Отбор 2030',
+        data:[null,null,50,35,20,10],
+        backgroundColor:'rgba(30,111,160,0.85)',
+        borderRadius:4
+      },
+      {
+        label:'Цел Б Отбор 2030',
+        data:[null,null,75,53,30,15],
+        backgroundColor:'rgba(13,27,42,0.7)',
+        borderRadius:4,
+        borderDash:[5,5]
+      }
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{
+      legend:{position:'top'},
+      tooltip:{callbacks:{label:function(ctx){
+        if(ctx.raw===null) return null;
+        return ctx.dataset.label+': '+ctx.raw+' деца';
+      }}}
+    },
+    scales:{
+      x:{stacked:false,ticks:{font:{size:11}}},
+      y:{beginAtZero:true,title:{display:true,text:'Брой деца'}}
+    }
+  }
+});
+
+// 4. Nabori chart
+new Chart(document.getElementById('chartNabori'), {
+  type:'bar',
+  data:{
+    labels:['2012','2013','2014','2015','2016','2017','2018','2019'],
+    datasets:[
+      {label:'Брой активни състезатели',
+       data:[20,8,25,22,7,18,24,10],
+       backgroundColor:function(ctx){return ctx.raw<12?'rgba(198,40,40,.7)':'rgba(30,111,160,.7)';},
+       borderRadius:4}
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{
+      legend:{display:false},
+      annotation:{annotations:[{type:'line',y:15,borderColor:GOLD,borderWidth:2,borderDash:[5,5],label:{content:'Мин. желано ниво',display:true,color:GOLD}}]}
+    },
+    scales:{y:{beginAtZero:true,title:{display:true,text:'Брой деца'}}}
+  }
+});
+
+// 5. Points donut
+new Chart(document.getElementById('chartPoints'), {
+  type:'doughnut',
+  data:{
+    labels:['Техника (30т.)','Посещаемост (20т.)','Отношение (20т.)','Труд/Упоритост (15т.)','Резултати (15т.)'],
+    datasets:[{data:[30,20,20,15,15],backgroundColor:[NAVY,WATER,WATER_L,GOLD,'#e8b84b'],borderWidth:2,borderColor:'#faf8f3'}]
+  },
+  options:{responsive:true,plugins:{legend:{position:'right'}}}
+});
+
+// 6. Calendar bar
+new Chart(document.getElementById('chartCalendar'), {
+  type:'bar',
+  data:{
+    labels:['Спорт за здраве','Олимп Потенциал','Б Отбор','А Отбор'],
+    datasets:[
+      {label:'Минимум',data:[1,2,3,5,8],backgroundColor:'rgba(30,111,160,.5)',borderRadius:4},
+      {label:'Оптимум',data:[2,3,5,8,12],backgroundColor:GOLD,borderRadius:4}
+    ]
+  },
+  options:{
+    responsive:true,indexAxis:'y',
+    plugins:{legend:{position:'top'}},
+    scales:{x:{beginAtZero:true,title:{display:true,text:'Старта годишно'}}}
+  }
+});
+
+// 7. 3-year plan line
+new Chart(document.getElementById('chartPlan'), {
+  type:'line',
+  data:{
+    labels:['2026','2027','2028','2029'],
+    datasets:[
+      {label:'Олимп Потенциал',data:[0,100,200,300],borderColor:NAVY,backgroundColor:'rgba(13,27,42,.1)',tension:.3,pointRadius:5},
+      {label:'Б Отбор',data:[40,80,130,173],borderColor:WATER,backgroundColor:'rgba(30,111,160,.1)',tension:.3,pointRadius:5},
+      {label:'А Отбор',data:[50,70,95,115],borderColor:GREEN,backgroundColor:'rgba(46,125,50,.1)',tension:.3,pointRadius:5}
+    ]
+  },
+  options:{responsive:true,plugins:{legend:{position:'top'}},scales:{y:{beginAtZero:true}}}
+});
+
+// 8. Target 2030 grouped bar
+new Chart(document.getElementById('chartTarget'), {
+  type:'bar',
+  data:{
+    labels:['Деца (7–10)','Младша (11–12)','Старша (13–14)','Мъже/Жени (15+)'],
+    datasets:[
+      {label:'Б Отбор 2030',data:[75,53,30,15],backgroundColor:WATER,borderRadius:6},
+      {label:'А Отбор 2030',data:[50,35,20,10],backgroundColor:GOLD,borderRadius:6}
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{position:'top'}},
+    scales:{
+      y:{beginAtZero:true,title:{display:true,text:'Брой деца'}},
+      x:{title:{display:true,text:'Възрастова група'}}
+    }
+  }
+});
+
+
+// Current enrollment chart
+new Chart(document.getElementById('chartCurrent'), {
+  type:'bar',
+  data:{
+    labels:['Златна рибка\n(7–8 г.)','Весел делфин\n(9–10 г.)','Деца\n(11–12 г.)','Младша\n(13–14 г.)','Старша\n(15–16 г.)','Мъже/Жени\n(17+ г.)'],
+    datasets:[{
+      label:'Картотекирани деца',
+      data:[4,18,21,15,18,4],
+      backgroundColor:[
+        'rgba(232,184,75,.8)',
+        'rgba(200,146,42,.8)',
+        'rgba(30,111,160,.8)',
+        'rgba(58,143,191,.8)',
+        'rgba(13,27,42,.8)',
+        'rgba(26,47,69,.8)'
+      ],
+      borderRadius:6
+    }]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{display:false}},
+    scales:{
+      y:{beginAtZero:true,title:{display:true,text:'Брой деца'},ticks:{stepSize:5}},
+      x:{ticks:{font:{size:11}}}
+    }
+  }
+});
+
+// Fade-in on scroll
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.style.opacity=1;}),{threshold:.05});
+document.querySelectorAll('.chapter').forEach(el=>{el.style.opacity=0;el.style.transition='opacity .5s ease';obs.observe(el);});
 </script>
 </body>
 </html>
